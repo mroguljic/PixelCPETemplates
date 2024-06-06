@@ -1,0 +1,3 @@
+#!/bin/bash
+filename=$(echo "$1" | xargs)  # Strip any leading/trailing whitespace that may appear in the executable name
+g++ -std=c++11 -Wall -O2 -Df2cFortran -DSI_PIXEL_TEMPLATE_STANDALONE -Wl,-stack_size -Wl,4000000 "${filename}.cxx" `root-config --cflags --libs` -I/usr/local/include -I /opt/homebrew/Cellar/boost/1.85.0/include -L/usr/local/lib -o "${filename}"

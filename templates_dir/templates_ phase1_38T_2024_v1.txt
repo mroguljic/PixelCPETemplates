@@ -1,0 +1,24 @@
+2024 [R378750], L1@450V, L2@350V, R1@400V
+[L1, L2 old, R1 remodelled]
+
+BPix map
+
+Layer 1, Lad 1,3,5,7,9,11, Modules 1-8, 0.0518
+Layer 1, Lad 2,4,6,8,10,12,Modules 1-8, 0.0518
+Layer 2, Modules 1-4, 0.0681
+Layer 2, Modules 5-8, 0.0681
+Layer 2, New Modules, 0.0560
+Layer 3, Modules 1-4, 0.0812
+Layer 3, Modules 5-8, 0.0848
+Layer 4, Modules 1-4, 0.0802
+Layer 4, Modules 5-8, 0.0827
+    
+FPix
+
+Ring 2, Panel 1, 0.0754
+Ring 2, Panel 2, 0.0720
+Ring 1, Panel 1, 0.0699
+Ring 1, Panel 2, 0.0677
+
+
+
