@@ -158,10 +158,8 @@ bool SiPixelTemplate::pushfile(int filenum, std::vector< SiPixelTemplateStore > 
 #else
    // This is the same as above, but more elegant.  (Elegance not allowed in CMSSW...)
    std::ostringstream tout;
-   std::cout<<"MATEJ HERE\n";
    tout << dir+"template_summary_zp" << std::setw(4) << std::setfill('0') << std::right << filenum << ".out" << std::ends;
    tempfile = tout.str();
-
 #endif
    
    //  Open the template file

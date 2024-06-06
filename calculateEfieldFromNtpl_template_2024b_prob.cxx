@@ -233,7 +233,7 @@ int main(int argc, char *argv[])
    
    // Initialize template store 
    
-   std::string templates_dir = "templates_dir";
+   std::string templates_dir = "templates_dir/";
    ID = bpl2;
    templ.pushfile(ID,thePixelTemp_,templates_dir);
    ID = bpl3m;
