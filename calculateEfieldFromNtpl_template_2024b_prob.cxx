@@ -95,6 +95,8 @@ int main(int argc, char *argv[])
    const int txm1 = TXSIZE - 1, tym1 = TYSIZE - 1;
    //	const float xpitch = 100., ypitch = 150.;
    //	int random(void);
+   std::string templates_dir = "templates_dir/";
+
    
    FILE *ifp;
    
@@ -232,8 +234,6 @@ int main(int argc, char *argv[])
    SiPixelTemplate templ(thePixelTemp_);
    
    // Initialize template store 
-   
-   std::string templates_dir = "templates_dir/";
    ID = bpl2;
    templ.pushfile(ID,thePixelTemp_,templates_dir);
    ID = bpl3m;
