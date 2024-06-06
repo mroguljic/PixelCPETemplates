@@ -493,15 +493,15 @@ int main(int argc, char *argv[])
          for(int i=0; i<150; ++i) {infile[i] = ' ';}
          if(external == 0) {
             if(nfile < 10) {   
-               sprintf(infile,"LorentzTrees/LATree_%6.6d/LA_%6.6d_%1.1d.root",runn,runn,nfile);
+               sprintf(infile,"LA_calibration_trees/LATree_%6.6d/LA_%6.6d_%1.1d.root",runn,runn,nfile);
             } else {
                if(nfile < 100) { 
-                  sprintf(infile,"../LA_calibration_trees/LATree_%6.6d/LA_%6.6d_%2.2d.root",runn,runn,nfile);
+                  sprintf(infile,"LA_calibration_trees/LATree_%6.6d/LA_%6.6d_%2.2d.root",runn,runn,nfile);
                } else {   
                   if(nfile < 1000) { 
-                     sprintf(infile,"../LA_calibration_trees/LATree_%6.6d/LA_%6.6d_%3.3d.root",runn,runn,nfile);
+                     sprintf(infile,"LA_calibration_trees/LATree_%6.6d/LA_%6.6d_%3.3d.root",runn,runn,nfile);
                   } else {                  
-                     sprintf(infile,"../LA_calibration_trees/LATree_%6.6d/LA_%6.6d_%4.4d.root",runn,runn,nfile);              
+                     sprintf(infile,"LA_calibration_trees/LATree_%6.6d/LA_%6.6d_%4.4d.root",runn,runn,nfile);              
                   }               
                }
             }
