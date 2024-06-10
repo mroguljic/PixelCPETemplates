@@ -1,10 +1,8 @@
-# Scripts to produce CPE templates for the CMS pixel detector
-
 ## Calculating E-field and producing track angles for PixelAV simulation
 
 ```
 git clone git@github.com:mroguljic/PixelCPETemplates.git
-cd PixelCPETemplates
+cd PixelCPETemplates/LA_tress_processing
 ./linkrootc++ calculateEfieldFromNtpl_template_2024b_prob
 ./calculateEfieldFromNtpl_template_2024b_prob #For the three prompts input 2, 2 and 0, respectively.
 ```
