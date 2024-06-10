@@ -1,0 +1,2 @@
+#!/bin/csh
+gcc -O2 -march=armv8-a+fp+simd+crypto+crc $1.c -lm -o $1

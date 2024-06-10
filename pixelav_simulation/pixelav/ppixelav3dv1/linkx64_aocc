@@ -1,0 +1,2 @@
+#!/bin/csh
+/opt/AMD/aocc-compiler-4.1.0/bin/clang -O3 -march=native -funroll-loops -fomit-frame-pointer $1.c -L/opt/AMD/aocc-compiler-4.1.0/lib -lm -o $1

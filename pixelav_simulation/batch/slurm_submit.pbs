@@ -1,0 +1,25 @@
+#!/bin/bash -l
+#SBATCH --job-name=list_clusters 
+#SBATCH --time=12:00:00
+#SBATCH --array=1-14
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1 
+#SBATCH --partition=shared
+#SBATCH --mail-type=end
+#SBATCH --mail-user=mrogulj1@jhu.edu
+#
+# cd /tmp
+cd /home/ext-mrogulj1/CPE_templates/pixelav_simulation/scrtmp
+mkdir "TEMPLATE_$SLURM_JOBID"
+cd "TEMPLATE_$SLURM_JOBID"
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/pixelav/SIRUTH.SPR .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/pixel2.init .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/wgt_pot.init .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/track_list.txt .
+/home/ext-mrogulj1/CPE_templates/pixelav_simulation/pixelav/pixelav2_list_trkp_n_2f $SLURM_ARRAY_TASK_ID
+gzip template_events_d*.out
+cp template_events_d*.out.gz /home/ext-mrogulj1/CPE_templates/pixelav_simulation/finished/
+cp seedfile* /home/ext-mrogulj1/CPE_templates/pixelav_simulation/finished/
+cd ..
+rm -r "TEMPLATE_$SLURM_JOBID"
+

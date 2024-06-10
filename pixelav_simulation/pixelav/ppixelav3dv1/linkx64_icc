@@ -1,0 +1,2 @@
+#!/bin/csh
+/opt/intel/oneapi/compiler/2023.1.0/linux/bin/intel64/icc -O1 $1.c -lm -o $1

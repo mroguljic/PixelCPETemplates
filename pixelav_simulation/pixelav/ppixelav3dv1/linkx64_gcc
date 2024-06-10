@@ -1,0 +1,2 @@
+#!/bin/csh
+/usr/bin/gcc -O2 $1.c  -msse -lm -o $1

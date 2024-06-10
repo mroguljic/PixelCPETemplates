@@ -1,0 +1,20 @@
+/* function prototypes */
+    int fork();
+    int ranlux_(float *, int *);
+    int rluxin_(int *);
+    int rluxut_(int *);
+    int rluxgo_(int *, int *, int *, int *);
+    int rnpssn_(float *, int *, int *);
+    int pixinit(float *, float *, float *, float *, float *, float [2], float *, float *, int *, int *, int *);
+    int detect(float, float, float, int, union vect_or_f [2][NEHSTORE], int, float [2][TXSIZE][TYSIZE]);
+    int deposit(float *, float, int, int, union vect_or_f [2][NEHSTORE], int *);
+    int propag(float, float, float, float, float [2], float, float, int, int, union vect_or_f [2][NEHSTORE], int [2][NEHSTORE]);
+    double mobil(int, float, float);
+    double eloss(float, float, float *);
+    double dsdlne(float, float);
+    double drde(float, int);
+    double rutherford(float, float *);
+    int newdir(union vect_or_f *, float, float);
+    int triplg(union vect_or_f *);
+    int fieldsav(union vect_or_f *, float *, union vect_or_f *, union vect_or_f *, float, float, float);
+    int wgtpotsav(union vect_or_f *, float [3][3], float, float, float);

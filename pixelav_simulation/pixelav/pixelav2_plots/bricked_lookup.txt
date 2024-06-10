@@ -1,0 +1,10 @@
+Pixel point   coordinates
+  8     d     -x+2px, y
+  7     g     -x+1px, y+0.5py
+  6     b     -x+1px, -y+0.5py
+  5     i     x, y+py
+  4     a     x, y
+  3     f     x, -y+py
+  2     h     x+1px, y+0.5py
+  1     c     x+1px, -y+0.5py
+  0     e     x+2px, y

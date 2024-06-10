@@ -4,3 +4,5 @@ templates_dir/*
 .DS_Store
 LA_calibration_trees*
 calculateEfieldFromNtpl_template_2024b_prob
+pixelav_simulation/batch/*out
+pixelav_simulation/scrtmp/*
