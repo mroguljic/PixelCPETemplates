@@ -1,10 +1,10 @@
-LA_tress_processing/Efield_output/*
-LA_tress_processing/LorentzTrees/*
-LA_tress_processing/LA_from_Ntpl_output/*
-LA_tress_processing/templates_dir/*
-LA_tress_processing/make_ntuple_v1b
-LA_tress_processing/simulated_clusters/*
-LA_tress_processing/make_ntuple_output/*
+LA_trees_processing/Efield_output/*
+LA_trees_processing/LorentzTrees/*
+LA_trees_processing/LA_from_Ntpl_output/*
+LA_trees_processing/templates_dir/*
+LA_trees_processing/make_ntuple_v1b
+LA_trees_processing/simulated_clusters/*
+LA_trees_processing/make_ntuple_output/*
 .DS_Store
 LA_calibration_trees*
 calculateEfieldFromNtpl_template_2024b_prob
