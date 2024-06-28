@@ -1,0 +1,13 @@
+
+Number of function evaluations:  37
+Vertices of final 3-d simplex and
+function values at the vertices:
+
+  i       x[i]         y[i]         z[i]       function
+
+  1     0.490676     0.605329     0.717563    -0.400000
+  2     0.474908     0.597644     0.687565    -0.400000
+  3     0.530209     0.590894     0.684828    -0.400000
+  4     0.507350     0.633569     0.698853    -0.400000
+
+True minimum is at (0.5,0.6,0.7)

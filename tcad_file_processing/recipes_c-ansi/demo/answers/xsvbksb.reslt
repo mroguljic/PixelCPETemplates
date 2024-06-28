@@ -1,0 +1,72 @@
+
+Vector number  1
+ solution vector is:
+    1.000000    0.000000    0.000000
+ original right-hand side vector:
+    1.000000    0.000000    0.000000
+ (matrix)*(sol'n vector):
+    1.000000    0.000000    0.000000
+
+Vector number  2
+ solution vector is:
+    1.000000    0.500000    0.333333
+ original right-hand side vector:
+    1.000000    1.000000    1.000000
+ (matrix)*(sol'n vector):
+    1.000000    1.000000    1.000000
+***********************************
+press RETURN for next problem
+
+Vector number  1
+ solution vector is:
+    0.000000    0.000000    0.333333
+ original right-hand side vector:
+    1.000000    1.000000    1.000000
+ (matrix)*(sol'n vector):
+    1.000000    1.000000    1.000000
+
+Vector number  2
+ solution vector is:
+    1.000000    0.000000    0.000000
+ original right-hand side vector:
+    1.000000    2.000000    3.000000
+ (matrix)*(sol'n vector):
+    0.999999    2.000000    3.000000
+***********************************
+press RETURN for next problem
+
+Vector number  1
+ solution vector is:
+    0.066667    0.066667    0.066667    0.066667    0.066667
+ original right-hand side vector:
+    1.000000    1.000000    1.000000    1.000000    1.000000
+ (matrix)*(sol'n vector):
+    1.000000    1.000000    1.000000    1.000000    1.000000
+
+Vector number  2
+ solution vector is:
+    1.000000    0.000000    0.000000    0.000000    0.000000
+ original right-hand side vector:
+    1.000000    2.000000    3.000000    4.000000    5.000000
+ (matrix)*(sol'n vector):
+    1.000001    2.000000    3.000000    4.000000    4.999999
+***********************************
+press RETURN for next problem
+
+Vector number  1
+ solution vector is:
+   -5.313073    5.735664   -2.507603   -1.058741    0.999380
+ original right-hand side vector:
+    1.100000    1.600000    4.700000    9.100000    0.100000
+ (matrix)*(sol'n vector):
+    1.099997    1.600000    4.699992    9.099993    0.099995
+
+Vector number  2
+ solution vector is:
+   31.600986  -28.594772   13.389387    2.780319   -3.008795
+ original right-hand side vector:
+    4.000000    9.300000    8.400000    0.400000    4.100000
+ (matrix)*(sol'n vector):
+    3.999994    9.299994    8.400007    0.400019    4.099993
+***********************************
+press RETURN for next problem

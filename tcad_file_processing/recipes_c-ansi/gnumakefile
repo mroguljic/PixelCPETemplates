@@ -1,0 +1,2108 @@
+.SUFFIXES:
+.SUFFIXES: .reslt .res .out .o .c
+# This is a GNU makefile for Numerical Recipes in C
+# This file is an UNSUPPORTED makefile, provided only for user convenience.
+# Numerical Recipes Software does not endorse any implementation of make.
+# This makefile takes advantage of several features found in GNU make
+# in order to simplify rule-writing.
+# This is separate from the other makefile, as it takes advantage of features
+# found in GNUmake
+# It is designed to aid in compiling programs using only the necessary files,
+# rather than the library approach.
+# DO NOT USE THIS WITH NON-GNU make PROGRAMS. IT MAY NOT WORK PROPERLY.
+#
+# Set the path and parameters below to the correct values when needed
+NRTYPE=ansi
+NRROOT=/cdrom/nrcdrom206a/unix/release2.06m/recipes_c-$(NRTYPE)
+VPATH=$(NRROOT)/recipes:$(NRROOT)/demo/responses:$(NRROOT)/demo/src:$(NRROOT)/include
+CC=gcc -ansi -DANSI
+CFLAGS=-D_ANSI_C_SOURCE -I$(NRROOT)/include
+NRDIFF=$(NRROOT)/demo/results/nrdiff.pl
+NRANS=$(NRROOT)/demo/answers
+NRLIBS=-lm
+.c.o: ; $(CC) $(CFLAGS) -c $<
+.o.out: ; $(CC) $(CFLAGS) -o $@ $^ $(NRLIBS)
+
+all : \
+xairy.reslt xamebsa.reslt xamoeba.reslt xanneal.reslt xarcode.reslt \
+xavevar.reslt xbalanc.reslt xbandec.reslt xbanmul.reslt xbcucof.reslt \
+xbcuint.reslt xbeschb.reslt xbessi.reslt xbessi0.reslt xbessi1.reslt \
+xbessik.reslt xbessj.reslt xbessj0.reslt xbessj1.reslt xbessjy.reslt \
+xbessk.reslt xbessk0.reslt xbessk1.reslt xbessy.reslt xbessy0.reslt \
+xbessy1.reslt xbeta.reslt xbetai.reslt xbico.reslt xbnldev.reslt \
+xbrent.reslt xbroydn.reslt xbsstep.reslt xcaldat.reslt xchder.reslt \
+xchebev.reslt xchebft.reslt xchebpc.reslt xchint.reslt xcholsl.reslt \
+xchsone.reslt xchstwo.reslt xcisi.reslt xcntab1.reslt xcntab2.reslt \
+xconvlv.reslt xcorrel.reslt xcosft1.reslt xcosft2.reslt xcovsrt.reslt \
+xcrank.reslt xcyclic.reslt xdawson.reslt xdbrent.reslt xddpoly.reslt \
+xdecchk.reslt xdf1dim.reslt xdfpmin.reslt xdfridr.reslt xdftint.reslt \
+xdlinmin.reslt xeclass.reslt xeclazz.reslt xei.reslt xeigsrt.reslt \
+xelle.reslt xellf.reslt xellpi.reslt xelmhes.reslt xerfcc.reslt \
+xerff.reslt xerffc.reslt xeulsum.reslt xevlmem.reslt xexpdev.reslt \
+xexpint.reslt xf1dim.reslt xfactln.reslt xfactrl.reslt xfasper.reslt \
+xfgauss.reslt xfit.reslt xfitexy.reslt xfixrts.reslt xfleg.reslt \
+xflmoon.reslt xfour1.reslt xfourfs.reslt xfourn.reslt xfpoly.reslt \
+xfred2.reslt xfredin.reslt xfrenel.reslt xfrprmn.reslt xftest.reslt \
+xgamdev.reslt xgammln.reslt xgammp.reslt xgammq.reslt xgasdev.reslt \
+xgaucof.reslt xgauher.reslt xgaujac.reslt xgaulag.reslt xgauleg.reslt \
+xgaussj.reslt xgcf.reslt xgolden.reslt xgser.reslt xhpsel.reslt \
+xhpsort.reslt xhqr.reslt xhuffman.reslt xhunt.reslt xhypgeo.reslt \
+xicrc.reslt xigray.reslt xindexx.reslt xirbit1.reslt xirbit2.reslt \
+xjacobi.reslt xjulday.reslt xkendl1.reslt xkendl2.reslt xks2d1s.reslt \
+xks2d2s.reslt xksone.reslt xkstwo.reslt xlaguer.reslt xlfit.reslt \
+xlinbcg.reslt xlinmin.reslt xlocate.reslt xlubksb.reslt xludcmp.reslt \
+xmachar.reslt xmedfit.reslt xmemcof.reslt xmgfas.reslt xmglin.reslt \
+xmidpnt.reslt xmiser.reslt xmmid.reslt xmnbrak.reslt xmnewt.reslt \
+xmoment.reslt xmppi.reslt xmprove.reslt xmrqcof.reslt xmrqmin.reslt \
+xnewt.reslt xodeint.reslt xorthog.reslt xpade.reslt xpccheb.reslt \
+xpcshft.reslt xpearsn.reslt xperiod.reslt xpiksr2.reslt xpiksrt.reslt \
+xplgndr.reslt xpoidev.reslt xpolcoe.reslt xpolcof.reslt xpoldiv.reslt \
+xpolin2.reslt xpolint.reslt xpowell.reslt xpredic.reslt xprobks.reslt \
+xpsdes.reslt xpzextr.reslt xqgaus.reslt xqrdcmp.reslt xqromb.reslt \
+xqromo.reslt xqroot.reslt xqrsolv.reslt xqrupdt.reslt xqsimp.reslt \
+xqtrap.reslt xquad3d.reslt xran.reslt xran4.reslt xrank.reslt \
+xratint.reslt xratlsq.reslt xrc.reslt xrd.reslt xrealft.reslt xrf.reslt \
+xrj.reslt xrk4.reslt xrkdumb.reslt xrkqs.reslt xrlft3.reslt \
+xrofunc.reslt xrtbis.reslt xrtflsp.reslt xrtnewt.reslt xrtsafe.reslt \
+xrtsec.reslt xrzextr.reslt xsavgol.reslt xscrsho.reslt xselect.reslt \
+xselip.reslt xshell.reslt xsimplx.reslt xsimpr.reslt xsinft.reslt \
+xsncndn.reslt xsobseq.reslt xsor.reslt xsort.reslt xsort2.reslt \
+xsort3.reslt xspctrm.reslt xspear.reslt xsphbes.reslt xsphfpt.reslt \
+xsplie2.reslt xsplin2.reslt xspline.reslt xsplint.reslt xsprsax.reslt \
+xsprsin.reslt xsprspm.reslt xsprstm.reslt xsprstp.reslt xsprstx.reslt \
+xstifbs.reslt xstiff.reslt xstoerm.reslt xsvbksb.reslt xsvdcmp.reslt \
+xsvdfit.reslt xsvdvar.reslt xtoeplz.reslt xtptest.reslt xtqli.reslt \
+xtrapzd.reslt xtred2.reslt xtridag.reslt xttest.reslt xtutest.reslt \
+xtwofft.reslt xvander.reslt xvegas.reslt xvoltra.reslt xwt1.reslt \
+xwtn.reslt xzbrac.reslt xzbrak.reslt xzbrent.reslt xzrhqr.reslt xzriddr.reslt \
+xzroots.reslt badluk.reslt fredex.reslt sfroid.reslt sphoot.reslt
+
+nrutil.o : nrutil.c
+	$(CC) $(CCFLAGS) -c $<
+
+nrutil: nrutil.o ;
+
+complex.o : complex.c
+	$(CC) $(CCFLAGS) -c $<
+
+complex : complex.o ;
+
+
+xairy.out : xairy.o airy.o bessik.o bessjy.o beschb.o chebev.o nrutil.o
+xamebsa.out : xamebsa.o amebsa.o amotsa.o ran1.o nrutil.o
+xamoeba.out : xamoeba.o amoeba.o amotry.o bessj0.o nrutil.o
+xanneal.out : xanneal.o anneal.o revcst.o reverse.o trncst.o trnspt.o metrop.o irbit1.o ran3.o nrutil.o
+xarcode.out : xarcode.o arcode.o arcmak.o arcsum.o nrutil.o
+xavevar.out : xavevar.o avevar.o gasdev.o ran1.o nrutil.o
+xbalanc.out : xbalanc.o balanc.o nrutil.o
+xbandec.out : xbandec.o banbks.o bandec.o banmul.o ran1.o nrutil.o
+xbanmul.out : xbanmul.o banmul.o nrutil.o
+xbcucof.out : xbcucof.o bcucof.o nrutil.o
+xbcuint.out : xbcuint.o bcuint.o bcucof.o nrutil.o
+xbeschb.out : xbeschb.o beschb.o chebev.o gammln.o nrutil.o
+xbessi.out : xbessi.o bessi.o bessi0.o nrutil.o
+xbessi0.out : xbessi0.o bessi0.o nrutil.o
+xbessi1.out : xbessi1.o bessi1.o nrutil.o
+xbessik.out : xbessik.o bessik.o beschb.o chebev.o nrutil.o
+xbessj.out : xbessj.o bessj.o bessj0.o bessj1.o nrutil.o
+xbessj0.out : xbessj0.o bessj0.o nrutil.o
+xbessj1.out : xbessj1.o bessj1.o nrutil.o
+xbessjy.out : xbessjy.o bessjy.o beschb.o chebev.o nrutil.o
+xbessk.out : xbessk.o bessk.o bessi0.o bessi1.o bessk0.o bessk1.o nrutil.o
+xbessk0.out : xbessk0.o bessk0.o bessi0.o nrutil.o
+xbessk1.out : xbessk1.o bessk1.o bessi1.o nrutil.o
+xbessy.out : xbessy.o bessy.o bessy1.o bessy0.o bessj1.o bessj0.o nrutil.o
+xbessy0.out : xbessy0.o bessy0.o bessj0.o nrutil.o
+xbessy1.out : xbessy1.o bessy1.o bessj1.o nrutil.o
+xbeta.out : xbeta.o beta.o gammln.o nrutil.o
+xbetai.out : xbetai.o betai.o betacf.o gammln.o nrutil.o
+xbico.out : xbico.o bico.o factln.o gammln.o nrutil.o
+xbnldev.out : xbnldev.o bnldev.o ran1.o gammln.o
+xbrent.out : xbrent.o brent.o mnbrak.o bessj0.o bessj1.o nrutil.o
+xbroydn.out : xbroydn.o broydn.o lnsrch.o qrdcmp.o qrupdt.o rotate.o rsolv.o fdjac.o fmin.o nrutil.o
+xbsstep.out : xbsstep.o bsstep.o odeint.o mmid.o pzextr.o bessj0.o bessj1.o bessj.o nrutil.o
+xcaldat.out : xcaldat.o caldat.o julday.o nrutil.o
+xchder.out : xchder.o chder.o chebft.o chebev.o nrutil.o
+xchebev.out : xchebev.o chebev.o chebft.o nrutil.o
+xchebft.out : xchebft.o chebft.o nrutil.o
+xchebpc.out : xchebpc.o chebpc.o chebft.o nrutil.o
+xchint.out : xchint.o chint.o chebft.o chebev.o nrutil.o
+xcholsl.out : xcholsl.o choldc.o cholsl.o nrutil.o
+xchsone.out : xchsone.o chsone.o expdev.o gammq.o gcf.o gser.o ran1.o gammln.o nrutil.o
+xchstwo.out : xchstwo.o chstwo.o expdev.o gammq.o gcf.o gser.o ran1.o gammln.o nrutil.o
+xcisi.out : xcisi.o cisi.o complex.o nrutil.o
+xcntab1.out : xcntab1.o cntab1.o gammq.o gcf.o gser.o gammln.o nrutil.o
+xcntab2.out : xcntab2.o cntab2.o nrutil.o
+xconvlv.out : xconvlv.o convlv.o twofft.o realft.o four1.o nrutil.o
+xcorrel.out : xcorrel.o correl.o twofft.o realft.o four1.o nrutil.o
+xcosft1.out : xcosft1.o cosft1.o realft.o four1.o nrutil.o
+xcosft2.out : xcosft2.o cosft2.o realft.o four1.o nrutil.o
+xcovsrt.out : xcovsrt.o covsrt.o nrutil.o
+xcrank.out : xcrank.o crank.o sort2.o nrutil.o
+xcyclic.out : xcyclic.o cyclic.o tridag.o lubksb.o ludcmp.o ran2.o nrutil.o
+xdawson.out : xdawson.o dawson.o nrutil.o
+xdbrent.out : xdbrent.o dbrent.o mnbrak.o bessj0.o bessj1.o nrutil.o
+xddpoly.out : xddpoly.o ddpoly.o factrl.o gammln.o nrutil.o
+xdecchk.out : xdecchk.o decchk.o
+xdf1dim.out : xdf1dim.o df1dim.o scrsho.o nrutil.o
+xdfpmin.out : xdfpmin.o dfpmin.o lnsrch.o nrutil.o
+xdfridr.out : xdfridr.o dfridr.o nrutil.o
+xdftint.out : xdftint.o dftint.o dftcor.o polint.o realft.o four1.o nrutil.o
+xdlinmin.out : xdlinmin.o dlinmin.o dbrent.o f1dim.o df1dim.o mnbrak.o nrutil.o
+xeclass.out : xeclass.o eclass.o nrutil.o
+xeclazz.out : xeclazz.o eclazz.o nrutil.o
+xei.out : xei.o ei.o nrutil.o
+xeigsrt.out : xeigsrt.o eigsrt.o jacobi.o nrutil.o
+xelle.out : xelle.o elle.o rf.o rd.o nrutil.o
+xellf.out : xellf.o ellf.o rf.o nrutil.o
+xellpi.out : xellpi.o ellpi.o rf.o rj.o rc.o nrutil.o
+xelmhes.out : xelmhes.o elmhes.o balanc.o nrutil.o
+xerfcc.out : xerfcc.o erfcc.o nrutil.o
+xerff.out : xerff.o erff.o gammp.o gser.o gcf.o gammln.o nrutil.o
+xerffc.out : xerffc.o erffc.o gammp.o gammq.o gser.o gcf.o gammln.o nrutil.o
+xeulsum.out : xeulsum.o eulsum.o nrutil.o
+xevlmem.out : xevlmem.o evlmem.o memcof.o nrutil.o
+xexpdev.out : xexpdev.o expdev.o ran1.o
+xexpint.out : xexpint.o expint.o nrutil.o
+xf1dim.out : xf1dim.o f1dim.o scrsho.o nrutil.o
+xfactln.out : xfactln.o factln.o gammln.o nrutil.o
+xfactrl.out : xfactrl.o factrl.o gammln.o nrutil.o
+xfasper.out : xfasper.o fasper.o spread.o realft.o four1.o avevar.o gasdev.o ran1.o nrutil.o
+xfgauss.out : xfgauss.o fgauss.o
+xfit.out : xfit.o fit.o gammq.o gammln.o gcf.o gser.o gasdev.o ran1.o nrutil.o
+xfitexy.out : xfitexy.o fitexy.o chixy.o fit.o brent.o zbrent.o gammq.o gammln.o gcf.o gser.o mnbrak.o avevar.o gasdev.o ran1.o nrutil.o
+xfixrts.out : xfixrts.o fixrts.o zroots.o laguer.o complex.o nrutil.o
+xfleg.out : xfleg.o fleg.o plgndr.o nrutil.o
+xflmoon.out : xflmoon.o flmoon.o caldat.o julday.o nrutil.o
+xfour1.out : xfour1.o four1.o nrutil.o
+xfourfs.out : xfourfs.o fourfs.o fourew.o fourn.o ran1.o nrutil.o
+xfourn.out : xfourn.o fourn.o ran1.o nrutil.o
+xfpoly.out : xfpoly.o fpoly.o nrutil.o
+xfred2.out : xfred2.o fred2.o gauleg.o lubksb.o ludcmp.o nrutil.o
+xfredin.out : xfredin.o fredin.o fred2.o gauleg.o lubksb.o ludcmp.o nrutil.o
+xfrenel.out : xfrenel.o frenel.o complex.o nrutil.o
+xfrprmn.out : xfrprmn.o frprmn.o linmin.o mnbrak.o brent.o f1dim.o bessj0.o bessj1.o nrutil.o
+xftest.out : xftest.o ftest.o avevar.o betai.o gasdev.o betacf.o gammln.o ran1.o nrutil.o
+xgamdev.out : xgamdev.o gamdev.o ran1.o nrutil.o
+xgammln.out : xgammln.o gammln.o nrutil.o
+xgammp.out : xgammp.o gammp.o gser.o gcf.o gammln.o nrutil.o
+xgammq.out : xgammq.o gammq.o gser.o gcf.o gammln.o nrutil.o
+xgasdev.out : xgasdev.o gasdev.o ran1.o
+xgaucof.out : xgaucof.o gaucof.o tqli.o pythag.o eigsrt.o nrutil.o
+xgauher.out : xgauher.o gauher.o nrutil.o
+xgaujac.out : xgaujac.o gaujac.o gammln.o ellf.o rf.o nrutil.o
+xgaulag.out : xgaulag.o gaulag.o gammln.o bessj0.o nrutil.o
+xgauleg.out : xgauleg.o gauleg.o nrutil.o
+xgaussj.out : xgaussj.o gaussj.o nrutil.o
+xgcf.out : xgcf.o gcf.o gammln.o nrutil.o
+xgolden.out : xgolden.o golden.o mnbrak.o bessj0.o bessj1.o
+xgser.out : xgser.o gser.o gammln.o nrutil.o
+xhpsel.out : xhpsel.o hpsel.o select.o sort.o nrutil.o
+xhpsort.out : xhpsort.o hpsort.o nrutil.o
+xhqr.out : xhqr.o hqr.o elmhes.o balanc.o nrutil.o
+xhuffman.out : xhuffman.o hufmak.o hufapp.o hufenc.o hufdec.o nrutil.o
+xhunt.out : xhunt.o hunt.o nrutil.o
+xhypgeo.out : xhypgeo.o hypgeo.o hypdrv.o hypser.o odeint.o bsstep.o mmid.o pzextr.o complex.o nrutil.o
+xicrc.out : xicrc.o icrc.o icrc1.o
+xigray.out : xigray.o igray.o
+xindexx.out : xindexx.o indexx.o nrutil.o
+xirbit1.out : xirbit1.o irbit1.o
+xirbit2.out : xirbit2.o irbit2.o
+xjacobi.out : xjacobi.o jacobi.o nrutil.o
+xjulday.out : xjulday.o julday.o nrutil.o
+xkendl1.out : xkendl1.o kendl1.o erfcc.o ran0.o ran1.o ran2.o ran3.o ran4.o psdes.o nrutil.o
+xkendl2.out : xkendl2.o kendl2.o irbit1.o irbit2.o erfcc.o nrutil.o
+xks2d1s.out : xks2d1s.o ks2d1s.o quadct.o quadvl.o pearsn.o probks.o shell.o betai.o betacf.o gammln.o ran1.o nrutil.o
+xks2d2s.out : xks2d2s.o ks2d2s.o quadct.o pearsn.o probks.o betai.o betacf.o gammln.o gasdev.o ran1.o nrutil.o
+xksone.out : xksone.o ksone.o gasdev.o probks.o sort.o ran1.o erff.o erfcc.o gcf.o gammln.o gser.o gammp.o nrutil.o
+xkstwo.out : xkstwo.o kstwo.o gasdev.o probks.o sort.o ran1.o nrutil.o
+xlaguer.out : xlaguer.o laguer.o complex.o nrutil.o
+xlfit.out : xlfit.o lfit.o covsrt.o gaussj.o gasdev.o ran1.o nrutil.o
+xlinbcg.out : xlinbcg.o linbcg.o snrm.o atimes.o asolve.o dsprstx.o dsprsax.o nrutil.o
+xlinmin.out : xlinmin.o linmin.o brent.o f1dim.o mnbrak.o nrutil.o
+xlocate.out : xlocate.o locate.o nrutil.o
+xlubksb.out : xlubksb.o lubksb.o ludcmp.o nrutil.o
+xludcmp.out : xludcmp.o ludcmp.o nrutil.o
+xmachar.out : xmachar.o machar.o
+xmedfit.out : xmedfit.o medfit.o fit.o rofunc.o select.o gammq.o gammln.o gcf.o gser.o gasdev.o ran1.o nrutil.o
+xmemcof.out : xmemcof.o memcof.o nrutil.o
+xmgfas.out : xmgfas.o mgfas.o slvsm2.o relax2.o lop.o matadd.o matsub.o anorm2.o rstrct.o interp.o copy.o fill0.o nrutil.o
+xmglin.out : xmglin.o mglin.o addint.o slvsml.o relax.o resid.o rstrct.o interp.o copy.o fill0.o nrutil.o
+xmidpnt.out : xmidpnt.o midpnt.o
+xmiser.out : xmiser.o miser.o ranpt.o ran1.o nrutil.o
+xmmid.out : xmmid.o mmid.o bessj0.o bessj1.o bessj.o nrutil.o
+xmnbrak.out : xmnbrak.o mnbrak.o bessj0.o
+xmnewt.out : xmnewt.o mnewt.o ludcmp.o lubksb.o nrutil.o
+xmoment.out : xmoment.o moment.o nrutil.o
+xmppi.out : xmppi.o mppi.o mpsqrt.o mp2dfr.o mpinv.o mpdiv.o mpmul.o mpops.o drealft.o dfour1.o nrutil.o
+xmprove.out : xmprove.o lubksb.o ludcmp.o mprove.o ran3.o nrutil.o
+xmrqcof.out : xmrqcof.o mrqcof.o fgauss.o gasdev.o ran1.o nrutil.o
+xmrqmin.out : xmrqmin.o mrqmin.o mrqcof.o covsrt.o fgauss.o gaussj.o gasdev.o ran1.o nrutil.o
+xnewt.out : xnewt.o newt.o fdjac.o fmin.o lnsrch.o ludcmp.o lubksb.o nrutil.o
+xodeint.out : xodeint.o odeint.o rkqs.o rkck.o bessj0.o bessj1.o bessj.o nrutil.o
+xorthog.out : xorthog.o orthog.o gaucof.o tqli.o pythag.o eigsrt.o nrutil.o
+xpade.out : xpade.o pade.o ratval.o ludcmp.o lubksb.o mprove.o nrutil.o
+xpccheb.out : xpccheb.o pccheb.o pcshft.o chebpc.o nrutil.o
+xpcshft.out : xpcshft.o pcshft.o chebft.o chebpc.o nrutil.o
+xpearsn.out : xpearsn.o pearsn.o betai.o betacf.o gammln.o nrutil.o
+xperiod.out : xperiod.o period.o avevar.o gasdev.o ran1.o nrutil.o
+xpiksr2.out : xpiksr2.o piksr2.o nrutil.o
+xpiksrt.out : xpiksrt.o piksrt.o nrutil.o
+xplgndr.out : xplgndr.o plgndr.o nrutil.o
+xpoidev.out : xpoidev.o poidev.o ran1.o gammln.o
+xpolcoe.out : xpolcoe.o polcoe.o nrutil.o
+xpolcof.out : xpolcof.o polcof.o polint.o nrutil.o
+xpoldiv.out : xpoldiv.o poldiv.o nrutil.o
+xpolin2.out : xpolin2.o polin2.o polint.o nrutil.o
+xpolint.out : xpolint.o polint.o nrutil.o
+xpowell.out : xpowell.o powell.o linmin.o bessj0.o brent.o f1dim.o mnbrak.o nrutil.o
+xpredic.out : xpredic.o predic.o fixrts.o memcof.o zroots.o laguer.o complex.o nrutil.o
+xprobks.out : xprobks.o probks.o
+xpsdes.out : xpsdes.o psdes.o
+xpzextr.out : xpzextr.o pzextr.o nrutil.o
+xqgaus.out : xqgaus.o qgaus.o
+xqrdcmp.out : xqrdcmp.o qrdcmp.o nrutil.o
+xqromb.out : xqromb.o qromb.o trapzd.o polint.o nrutil.o
+xqromo.out : xqromo.o qromo.o midinf.o midsql.o midsqu.o midexp.o polint.o nrutil.o
+xqroot.out : xqroot.o qroot.o poldiv.o nrutil.o
+xqrsolv.out : xqrsolv.o qrsolv.o qrdcmp.o rsolv.o nrutil.o
+xqrupdt.out : xqrupdt.o qrupdt.o qrdcmp.o rotate.o nrutil.o
+xqsimp.out : xqsimp.o qsimp.o trapzd.o nrutil.o
+xqtrap.out : xqtrap.o qtrap.o trapzd.o nrutil.o
+xquad3d.out : xquad3d.o quad3d.o qgaus.o
+xran.out : xran.o ran0.o ran1.o ran2.o ran3.o
+xran4.out : xran4.o ran4.o psdes.o
+xrank.out : xrank.o rank.o indexx.o nrutil.o
+xratint.out : xratint.o ratint.o nrutil.o
+xratlsq.out : xratlsq.o ratlsq.o ratval.o dsvbksb.o dsvdcmp.o dpythag.o nrutil.o
+xrc.out : xrc.o rc.o nrutil.o
+xrd.out : xrd.o rd.o nrutil.o
+xrealft.out : xrealft.o realft.o four1.o nrutil.o
+xrf.out : xrf.o rf.o nrutil.o
+xrj.out : xrj.o rj.o rc.o rf.o nrutil.o
+xrk4.out : xrk4.o rk4.o bessj0.o bessj1.o bessj.o nrutil.o
+xrkdumb.out : xrkdumb.o rkdumb.o rk4.o bessj0.o bessj1.o bessj.o nrutil.o
+xrkqs.out : xrkqs.o rkqs.o rkck.o bessj0.o bessj1.o bessj.o nrutil.o
+xrlft3.out : xrlft3.o rlft3.o fourn.o ran1.o nrutil.o
+xrofunc.out : xrofunc.o rofunc.o select.o sort.o gasdev.o ran1.o nrutil.o
+xrtbis.out : xrtbis.o rtbis.o zbrak.o bessj0.o nrutil.o
+xrtflsp.out : xrtflsp.o rtflsp.o zbrak.o bessj0.o nrutil.o
+xrtnewt.out : xrtnewt.o rtnewt.o zbrak.o bessj0.o bessj1.o nrutil.o
+xrtsafe.out : xrtsafe.o rtsafe.o zbrak.o bessj0.o bessj1.o nrutil.o
+xrtsec.out : xrtsec.o rtsec.o zbrak.o bessj0.o nrutil.o
+xrzextr.out : xrzextr.o rzextr.o nrutil.o
+xsavgol.out : xsavgol.o savgol.o ludcmp.o lubksb.o nrutil.o
+xscrsho.out : xscrsho.o scrsho.o bessj0.o
+xselect.out : xselect.o select.o selip.o shell.o nrutil.o
+xselip.out : xselip.o selip.o shell.o nrutil.o
+xshell.out : xshell.o shell.o nrutil.o
+xsimplx.out : xsimplx.o simplx.o simp1.o simp2.o simp3.o nrutil.o
+xsimpr.out : xsimpr.o simpr.o jacobn.o lubksb.o ludcmp.o nrutil.o
+xsinft.out : xsinft.o sinft.o realft.o four1.o nrutil.o
+xsncndn.out : xsncndn.o sncndn.o nrutil.o
+xsobseq.out : xsobseq.o sobseq.o nrutil.o
+xsor.out : xsor.o sor.o nrutil.o
+xsort.out : xsort.o sort.o nrutil.o
+xsort2.out : xsort2.o sort2.o nrutil.o
+xsort3.out : xsort3.o sort3.o indexx.o nrutil.o
+xspctrm.out : xspctrm.o spctrm.o four1.o nrutil.o
+xspear.out : xspear.o spear.o betai.o betacf.o erfcc.o crank.o sort2.o gammln.o nrutil.o
+xsphbes.out : xsphbes.o sphbes.o bessjy.o beschb.o chebev.o nrutil.o
+xsphfpt.out : xsphfpt.o sphfpt.o shootf.o odeint.o rkqs.o rkck.o newt.o fdjac.o fmin.o lnsrch.o lubksb.o ludcmp.o nrutil.o
+xsplie2.out : xsplie2.o splie2.o spline.o nrutil.o
+xsplin2.out : xsplin2.o splie2.o splin2.o spline.o splint.o nrutil.o
+xspline.out : xspline.o spline.o nrutil.o
+xsplint.out : xsplint.o spline.o splint.o nrutil.o
+xsprsax.out : xsprsax.o sprsax.o sprsin.o nrutil.o
+xsprsin.out : xsprsin.o sprsin.o nrutil.o
+xsprspm.out : xsprspm.o sprspm.o sprstp.o sprsin.o iindexx.o nrutil.o
+xsprstm.out : xsprstm.o sprstm.o sprstp.o sprsin.o iindexx.o nrutil.o
+xsprstp.out : xsprstp.o sprstp.o sprsin.o iindexx.o nrutil.o
+xsprstx.out : xsprstx.o sprstx.o sprsin.o nrutil.o
+xstifbs.out : xstifbs.o stifbs.o simpr.o pzextr.o jacobn.o odeint.o lubksb.o ludcmp.o nrutil.o
+xstiff.out : xstiff.o stiff.o jacobn.o odeint.o lubksb.o ludcmp.o nrutil.o
+xstoerm.out : xstoerm.o stoerm.o nrutil.o
+xsvbksb.out : xsvbksb.o svbksb.o svdcmp.o pythag.o nrutil.o
+xsvdcmp.out : xsvdcmp.o svdcmp.o pythag.o nrutil.o
+xsvdfit.out : xsvdfit.o svdfit.o svdvar.o fpoly.o fleg.o svdcmp.o pythag.o svbksb.o gasdev.o ran1.o nrutil.o
+xsvdvar.out : xsvdvar.o svdvar.o nrutil.o
+xtoeplz.out : xtoeplz.o toeplz.o nrutil.o
+xtptest.out : xtptest.o tptest.o avevar.o betai.o gasdev.o betacf.o gammln.o ran1.o nrutil.o
+xtqli.out : xtqli.o tqli.o pythag.o tred2.o nrutil.o
+xtrapzd.out : xtrapzd.o trapzd.o
+xtred2.out : xtred2.o tred2.o nrutil.o
+xtridag.out : xtridag.o tridag.o nrutil.o
+xttest.out : xttest.o ttest.o avevar.o betai.o gasdev.o betacf.o gammln.o ran1.o nrutil.o
+xtutest.out : xtutest.o tutest.o avevar.o betai.o gasdev.o betacf.o gammln.o ran1.o nrutil.o
+xtwofft.out : xtwofft.o twofft.o four1.o nrutil.o
+xvander.out : xvander.o vander.o nrutil.o
+xvegas.out : xvegas.o vegas.o rebin.o ran2.o nrutil.o
+xvoltra.out : xvoltra.o voltra.o lubksb.o ludcmp.o nrutil.o
+xwt1.out : xwt1.o wt1.o pwtset.o pwt.o daub4.o select.o nrutil.o
+xwtn.out : xwtn.o wtn.o pwtset.o pwt.o nrutil.o
+xzbrac.out : xzbrac.o zbrac.o bessj0.o nrutil.o
+xzbrak.out : xzbrak.o zbrak.o bessj0.o nrutil.o
+xzbrent.out : xzbrent.o zbrent.o zbrak.o bessj0.o nrutil.o
+xzrhqr.out : xzrhqr.o zrhqr.o balanc.o hqr.o nrutil.o
+xzriddr.out : xzriddr.o zriddr.o zbrak.o bessj0.o nrutil.o
+xzroots.out : xzroots.o zroots.o laguer.o complex.o nrutil.o
+badluk.out : badluk.o flmoon.o julday.o nrutil.o
+fredex.out : fredex.o quadmx.o kermom.o wwghts.o lubksb.o ludcmp.o nrutil.o
+sfroid.out : sfroid.o solvde.o plgndr.o bksub.o difeq.o pinvs.o red.o nrutil.o
+sphoot.out : sphoot.o shoot.o odeint.o rkqs.o rkck.o newt.o fdjac.o fmin.o lnsrch.o lubksb.o ludcmp.o nrutil.o
+
+# Recipes dependencies - NR routines only
+addint.o : addint.c
+airy.o : airy.c
+amebsa.o : amebsa.c nrutil.o nrutil.h
+amoeba.o : amoeba.c nrutil.o nrutil.h
+amotry.o : amotry.c nrutil.o nrutil.h
+amotsa.o : amotsa.c nrutil.o nrutil.h
+anneal.o : anneal.c
+anorm2.o : anorm2.c
+arcmak.o : arcmak.c nrutil.o nrutil.h
+arcode.o : arcode.c nrutil.o 
+arcsum.o : arcsum.c
+asolve.o : asolve.c
+atimes.o : atimes.c
+avevar.o : avevar.c
+badluk.o : badluk.c
+balanc.o : balanc.c
+banbks.o : banbks.c
+bandec.o : bandec.c
+banmul.o : banmul.c nrutil.h
+bcucof.o : bcucof.c
+bcuint.o : bcuint.c nrutil.o nrutil.h
+beschb.o : beschb.c
+bessi.o : bessi.c nrutil.o 
+bessi0.o : bessi0.c
+bessi1.o : bessi1.c
+bessik.o : bessik.c nrutil.o 
+bessj.o : bessj.c nrutil.o 
+bessj0.o : bessj0.c
+bessj1.o : bessj1.c
+bessjy.o : bessjy.c nrutil.o nrutil.h
+bessk.o : bessk.c nrutil.o 
+bessk0.o : bessk0.c
+bessk1.o : bessk1.c
+bessy.o : bessy.c nrutil.o 
+bessy0.o : bessy0.c
+bessy1.o : bessy1.c
+beta.o : beta.c
+betacf.o : betacf.c nrutil.o 
+betai.o : betai.c nrutil.o 
+bico.o : bico.c
+bksub.o : bksub.c
+bnldev.o : bnldev.c
+brent.o : brent.c nrutil.o nrutil.h
+broydn.o : broydn.c nrutil.o nrutil.h
+bsstep.o : bsstep.c nrutil.o nrutil.h
+caldat.o : caldat.c
+chder.o : chder.c
+chebev.o : chebev.c nrutil.o 
+chebft.o : chebft.c nrutil.o nrutil.h
+chebpc.o : chebpc.c nrutil.o nrutil.h
+chint.o : chint.c
+chixy.o : chixy.c nrutil.h
+choldc.o : choldc.c nrutil.o 
+cholsl.o : cholsl.c
+chsone.o : chsone.c nrutil.o 
+chstwo.o : chstwo.c
+cisi.o : cisi.c complex.o nrutil.o complex.h
+cntab1.o : cntab1.c nrutil.o nrutil.h
+cntab2.o : cntab2.c nrutil.o nrutil.h
+complex.o : complex.c
+convlv.o : convlv.c nrutil.o nrutil.h
+copy.o : copy.c
+correl.o : correl.c nrutil.o nrutil.h
+cosft1.o : cosft1.c
+cosft2.o : cosft2.c
+covsrt.o : covsrt.c
+crank.o : crank.c
+cyclic.o : cyclic.c nrutil.o nrutil.h
+daub4.o : daub4.c nrutil.o nrutil.h
+dawson.o : dawson.c nrutil.h
+dbrent.o : dbrent.c nrutil.o nrutil.h
+ddpoly.o : ddpoly.c
+decchk.o : decchk.c
+df1dim.o : df1dim.c nrutil.o nrutil.h
+dfour1.o : dfour1.c
+dfpmin.o : dfpmin.c nrutil.o nrutil.h
+dfridr.o : dfridr.c nrutil.o nrutil.h
+dftcor.o : dftcor.c nrutil.o 
+dftint.o : dftint.c nrutil.o nrutil.h
+difeq.o : difeq.c
+dlinmin.o : dlinmin.c nrutil.o nrutil.h
+dpythag.o : dpythag.c nrutil.h
+drealft.o : drealft.c
+dsprsax.o : dsprsax.c nrutil.o 
+dsprstx.o : dsprstx.c nrutil.o 
+dsvbksb.o : dsvbksb.c nrutil.o nrutil.h
+dsvdcmp.o : dsvdcmp.c nrutil.o nrutil.h
+eclass.o : eclass.c
+eclazz.o : eclazz.c
+ei.o : ei.c nrutil.o 
+eigsrt.o : eigsrt.c
+elle.o : elle.c nrutil.h
+ellf.o : ellf.c nrutil.h
+ellpi.o : ellpi.c nrutil.h
+elmhes.o : elmhes.c
+erfcc.o : erfcc.c
+erff.o : erff.c
+erffc.o : erffc.c
+eulsum.o : eulsum.c
+evlmem.o : evlmem.c
+expdev.o : expdev.c
+expint.o : expint.c nrutil.o 
+f1dim.o : f1dim.c nrutil.o nrutil.h
+factln.o : factln.c nrutil.o 
+factrl.o : factrl.c nrutil.o 
+fasper.o : fasper.c nrutil.o nrutil.h
+fdjac.o : fdjac.c nrutil.o nrutil.h
+fgauss.o : fgauss.c
+fill0.o : fill0.c
+fit.o : fit.c nrutil.h
+fitexy.o : fitexy.c nrutil.o nrutil.h
+fixrts.o : fixrts.c complex.o complex.h
+fleg.o : fleg.c
+flmoon.o : flmoon.c nrutil.o 
+fmin.o : fmin.c nrutil.h
+four1.o : four1.c
+fourew.o : fourew.c
+fourfs.o : fourfs.c nrutil.o nrutil.h
+fourn.o : fourn.c
+fpoly.o : fpoly.c
+fred2.o : fred2.c nrutil.o nrutil.h
+fredex.o : fredex.c nrutil.o nrutil.h
+fredin.o : fredin.c
+frenel.o : frenel.c complex.o nrutil.o complex.h
+frprmn.o : frprmn.c nrutil.o nrutil.h
+ftest.o : ftest.c
+gamdev.o : gamdev.c nrutil.o 
+gammln.o : gammln.c
+gammp.o : gammp.c nrutil.o 
+gammq.o : gammq.c nrutil.o 
+gasdev.o : gasdev.c
+gaucof.o : gaucof.c nrutil.o nrutil.h
+gauher.o : gauher.c nrutil.o 
+gaujac.o : gaujac.c nrutil.o 
+gaulag.o : gaulag.c nrutil.o 
+gauleg.o : gauleg.c
+gaussj.o : gaussj.c nrutil.o nrutil.h
+gcf.o : gcf.c nrutil.o 
+golden.o : golden.c
+gser.o : gser.c nrutil.o 
+hpsel.o : hpsel.c nrutil.o 
+hpsort.o : hpsort.c
+hqr.o : hqr.c nrutil.o nrutil.h
+hufapp.o : hufapp.c
+hufdec.o : hufdec.c
+hufenc.o : hufenc.c nrutil.o 
+hufmak.o : hufmak.c nrutil.o nrutil.h
+hunt.o : hunt.c
+hypdrv.o : hypdrv.c complex.o complex.h
+hypgeo.o : hypgeo.c complex.o nrutil.o complex.h nrutil.h
+hypser.o : hypser.c complex.o nrutil.o complex.h
+icrc.o : icrc.c
+icrc1.o : icrc1.c
+igray.o : igray.c
+iindexx.o : iindexx.c nrutil.o nrutil.h
+indexx.o : indexx.c nrutil.o nrutil.h
+interp.o : interp.c
+irbit1.o : irbit1.c
+irbit2.o : irbit2.c
+jacobi.o : jacobi.c nrutil.o nrutil.h
+jacobn.o : jacobn.c
+julday.o : julday.c nrutil.o 
+kendl1.o : kendl1.c
+kendl2.o : kendl2.c
+kermom.o : kermom.c
+ks2d1s.o : ks2d1s.c nrutil.h
+ks2d2s.o : ks2d2s.c nrutil.h
+ksone.o : ksone.c nrutil.h
+kstwo.o : kstwo.c
+laguer.o : laguer.c complex.o nrutil.o complex.h nrutil.h
+lfit.o : lfit.c nrutil.o nrutil.h
+linbcg.o : linbcg.c nrutil.o nrutil.h
+linmin.o : linmin.c nrutil.o nrutil.h
+lnsrch.o : lnsrch.c nrutil.o nrutil.h
+locate.o : locate.c
+lop.o : lop.c
+lubksb.o : lubksb.c
+ludcmp.o : ludcmp.c nrutil.o nrutil.h
+machar.o : machar.c
+matadd.o : matadd.c
+matsub.o : matsub.c
+medfit.o : medfit.c nrutil.h
+memcof.o : memcof.c nrutil.o nrutil.h
+metrop.o : metrop.c
+mgfas.o : mgfas.c nrutil.o nrutil.h
+mglin.o : mglin.c nrutil.o nrutil.h
+midexp.o : midexp.c
+midinf.o : midinf.c
+midpnt.o : midpnt.c
+midsql.o : midsql.c
+midsqu.o : midsqu.c
+miser.o : miser.c nrutil.o nrutil.h
+mmid.o : mmid.c nrutil.o nrutil.h
+mnbrak.o : mnbrak.c nrutil.h
+mnewt.o : mnewt.c nrutil.o nrutil.h
+moment.o : moment.c nrutil.o 
+mp2dfr.o : mp2dfr.c
+mpdiv.o : mpdiv.c nrutil.o nrutil.h
+mpinv.o : mpinv.c nrutil.o nrutil.h
+mpmul.o : mpmul.c nrutil.o nrutil.h
+mpops.o : mpops.c
+mppi.o : mppi.c nrutil.o nrutil.h
+mprove.o : mprove.c nrutil.o nrutil.h
+mpsqrt.o : mpsqrt.c nrutil.o nrutil.h
+mrqcof.o : mrqcof.c nrutil.o nrutil.h
+mrqmin.o : mrqmin.c nrutil.o nrutil.h
+newt.o : newt.c nrutil.o nrutil.h
+nrutil.o : nrutil.c
+odeint.o : odeint.c nrutil.o nrutil.h
+orthog.o : orthog.c nrutil.o nrutil.h
+pade.o : pade.c nrutil.o nrutil.h
+pccheb.o : pccheb.c
+pcshft.o : pcshft.c
+pearsn.o : pearsn.c
+period.o : period.c nrutil.o nrutil.h
+piksr2.o : piksr2.c
+piksrt.o : piksrt.c
+pinvs.o : pinvs.c nrutil.o nrutil.h
+plgndr.o : plgndr.c nrutil.o 
+poidev.o : poidev.c
+polcoe.o : polcoe.c nrutil.o nrutil.h
+polcof.o : polcof.c nrutil.o nrutil.h
+poldiv.o : poldiv.c
+polin2.o : polin2.c nrutil.o nrutil.h
+polint.o : polint.c nrutil.o nrutil.h
+powell.o : powell.c nrutil.o nrutil.h
+predic.o : predic.c nrutil.o nrutil.h
+probks.o : probks.c
+psdes.o : psdes.c
+pwt.o : pwt.c nrutil.o nrutil.h
+pwtset.o : pwtset.c nrutil.o 
+pythag.o : pythag.c nrutil.h
+pzextr.o : pzextr.c nrutil.o nrutil.h
+qgaus.o : qgaus.c
+qrdcmp.o : qrdcmp.c nrutil.h
+qromb.o : qromb.c nrutil.o 
+qromo.o : qromo.c nrutil.o 
+qroot.o : qroot.c nrutil.o nrutil.h
+qrsolv.o : qrsolv.c
+qrupdt.o : qrupdt.c nrutil.h
+qsimp.o : qsimp.c nrutil.o 
+qtrap.o : qtrap.c nrutil.o 
+quad3d.o : quad3d.c
+quadct.o : quadct.c
+quadmx.o : quadmx.c nrutil.o nrutil.h
+quadvl.o : quadvl.c nrutil.h
+ran0.o : ran0.c
+ran1.o : ran1.c
+ran2.o : ran2.c
+ran3.o : ran3.c
+ran4.o : ran4.c
+rank.o : rank.c
+ranpt.o : ranpt.c
+ratint.o : ratint.c nrutil.o nrutil.h
+ratlsq.o : ratlsq.c nrutil.o nrutil.h
+ratval.o : ratval.c
+rc.o : rc.c nrutil.o nrutil.h
+rd.o : rd.c nrutil.o nrutil.h
+realft.o : realft.c
+rebin.o : rebin.c
+red.o : red.c
+relax.o : relax.c
+relax2.o : relax2.c
+resid.o : resid.c
+revcst.o : revcst.c
+reverse.o : reverse.c
+rf.o : rf.c nrutil.o nrutil.h
+rj.o : rj.c nrutil.o nrutil.h
+rk4.o : rk4.c nrutil.o nrutil.h
+rkck.o : rkck.c nrutil.o nrutil.h
+rkdumb.o : rkdumb.c nrutil.o nrutil.h
+rkqs.o : rkqs.c nrutil.o nrutil.h
+rlft3.o : rlft3.c nrutil.o 
+rlftfrag.o : rlftfrag.c nrutil.o nrutil.h
+rofunc.o : rofunc.c nrutil.o nrutil.h
+rotate.o : rotate.c nrutil.h
+rsolv.o : rsolv.c
+rstrct.o : rstrct.c
+rtbis.o : rtbis.c nrutil.o 
+rtflsp.o : rtflsp.c nrutil.o 
+rtnewt.o : rtnewt.c nrutil.o 
+rtsafe.o : rtsafe.c nrutil.o 
+rtsec.o : rtsec.c nrutil.o 
+rzextr.o : rzextr.c nrutil.o nrutil.h
+savgol.o : savgol.c nrutil.o nrutil.h
+scrsho.o : scrsho.c
+select.o : select.c
+selip.o : selip.c nrutil.o nrutil.h
+sfroid.o : sfroid.c nrutil.o nrutil.h
+shell.o : shell.c
+shoot.o : shoot.c nrutil.o nrutil.h
+shootf.o : shootf.c nrutil.o nrutil.h
+simp1.o : simp1.c
+simp2.o : simp2.c
+simp3.o : simp3.c
+simplx.o : simplx.c nrutil.o nrutil.h
+simpr.o : simpr.c nrutil.o nrutil.h
+sinft.o : sinft.c
+slvsm2.o : slvsm2.c
+slvsml.o : slvsml.c
+sncndn.o : sncndn.c
+snrm.o : snrm.c
+sobseq.o : sobseq.c nrutil.o nrutil.h
+solvde.o : solvde.c nrutil.o nrutil.h
+sor.o : sor.c nrutil.o 
+sort.o : sort.c nrutil.o nrutil.h
+sort2.o : sort2.c nrutil.o nrutil.h
+sort3.o : sort3.c nrutil.o nrutil.h
+spctrm.o : spctrm.c nrutil.o nrutil.h
+spear.o : spear.c nrutil.o nrutil.h
+sphbes.o : sphbes.c nrutil.o 
+sphfpt.o : sphfpt.c nrutil.o nrutil.h
+sphoot.o : sphoot.c nrutil.o nrutil.h
+splie2.o : splie2.c
+splin2.o : splin2.c nrutil.o nrutil.h
+spline.o : spline.c nrutil.o nrutil.h
+splint.o : splint.c nrutil.o 
+spread.o : spread.c nrutil.o nrutil.h
+sprsax.o : sprsax.c nrutil.o 
+sprsin.o : sprsin.c nrutil.o 
+sprspm.o : sprspm.c nrutil.o 
+sprstm.o : sprstm.c nrutil.o 
+sprstp.o : sprstp.c
+sprstx.o : sprstx.c nrutil.o 
+stifbs.o : stifbs.c nrutil.o nrutil.h
+stiff.o : stiff.c nrutil.o nrutil.h
+stoerm.o : stoerm.c nrutil.o nrutil.h
+svbksb.o : svbksb.c nrutil.o nrutil.h
+svdcmp.o : svdcmp.c nrutil.o nrutil.h
+svdfit.o : svdfit.c nrutil.o nrutil.h
+svdvar.o : svdvar.c nrutil.o nrutil.h
+toeplz.o : toeplz.c nrutil.o nrutil.h
+tptest.o : tptest.c
+tqli.o : tqli.c nrutil.o nrutil.h
+trapzd.o : trapzd.c
+tred2.o : tred2.c
+tridag.o : tridag.c nrutil.o nrutil.h
+trncst.o : trncst.c
+trnspt.o : trnspt.c nrutil.o nrutil.h
+ttest.o : ttest.c
+tutest.o : tutest.c nrutil.h
+twofft.o : twofft.c
+vander.o : vander.c nrutil.o nrutil.h
+vegas.o : vegas.c nrutil.h
+voltra.o : voltra.c nrutil.o nrutil.h
+wt1.o : wt1.c
+wtn.o : wtn.c nrutil.o nrutil.h
+wwghts.o : wwghts.c
+zbrac.o : zbrac.c nrutil.o 
+zbrak.o : zbrak.c
+zbrent.o : zbrent.c nrutil.o nrutil.h
+zrhqr.o : zrhqr.c nrutil.o nrutil.h
+zriddr.o : zriddr.c nrutil.o nrutil.h
+zroots.o : zroots.c complex.o complex.h
+
+
+# Driver dependencies - NR routines only
+xairy.o : xairy.c nrutil.o nrutil.h nr.h
+xamebsa.o : xamebsa.c nrutil.o nrutil.h nr.h
+xamoeba.o : xamoeba.c nrutil.o nrutil.h nr.h
+xanneal.o : xanneal.c nrutil.o nrutil.h nr.h
+xarcode.o : xarcode.c nrutil.o nrutil.h nr.h
+xavevar.o : xavevar.c nrutil.o nrutil.h nr.h
+xbalanc.o : xbalanc.c nrutil.o nrutil.h nr.h
+xbandec.o : xbandec.c nrutil.o nrutil.h nr.h
+xbanmul.o : xbanmul.c nrutil.o nrutil.h nr.h
+xbcucof.o : xbcucof.c nrutil.o nrutil.h nr.h
+xbcuint.o : xbcuint.c nr.h
+xbeschb.o : xbeschb.c nrutil.h nr.h
+xbessi.o : xbessi.c nrutil.o nrutil.h nr.h
+xbessi0.o : xbessi0.c nrutil.o nrutil.h nr.h
+xbessi1.o : xbessi1.c nrutil.o nrutil.h nr.h
+xbessik.o : xbessik.c nrutil.o nrutil.h nr.h
+xbessj.o : xbessj.c nrutil.o nrutil.h nr.h
+xbessj0.o : xbessj0.c nrutil.o nrutil.h nr.h
+xbessj1.o : xbessj1.c nrutil.o nrutil.h nr.h
+xbessjy.o : xbessjy.c nrutil.o nrutil.h nr.h
+xbessk.o : xbessk.c nrutil.o nrutil.h nr.h
+xbessk0.o : xbessk0.c nrutil.o nrutil.h nr.h
+xbessk1.o : xbessk1.c nrutil.o nrutil.h nr.h
+xbessy.o : xbessy.c nrutil.o nrutil.h nr.h
+xbessy0.o : xbessy0.c nrutil.o nrutil.h nr.h
+xbessy1.o : xbessy1.c nrutil.o nrutil.h nr.h
+xbeta.o : xbeta.c nrutil.o nrutil.h nr.h
+xbetai.o : xbetai.c nrutil.o nrutil.h nr.h
+xbico.o : xbico.c nrutil.o nrutil.h nr.h
+xbnldev.o : xbnldev.c nr.h
+xbrent.o : xbrent.c nr.h
+xbroydn.o : xbroydn.c nrutil.o nrutil.h nr.h
+xbsstep.o : xbsstep.c nrutil.o nrutil.h nr.h
+xcaldat.o : xcaldat.c nrutil.o nrutil.h nr.h
+xchder.o : xchder.c nr.h
+xchebev.o : xchebev.c nr.h
+xchebft.o : xchebft.c nr.h
+xchebpc.o : xchebpc.c nr.h
+xchint.o : xchint.c nr.h
+xcholsl.o : xcholsl.c nrutil.o nrutil.h nr.h
+xchsone.o : xchsone.c nrutil.o nrutil.h nr.h
+xchstwo.o : xchstwo.c nrutil.o nrutil.h nr.h
+xcisi.o : xcisi.c nrutil.o nrutil.h nr.h
+xcntab1.o : xcntab1.c nrutil.o nrutil.h nr.h
+xcntab2.o : xcntab2.c nrutil.o nrutil.h nr.h
+xconvlv.o : xconvlv.c nrutil.o nrutil.h nr.h
+xcorrel.o : xcorrel.c nrutil.o nrutil.h nr.h
+xcosft1.o : xcosft1.c nrutil.o nrutil.h nr.h
+xcosft2.o : xcosft2.c nrutil.o nrutil.h nr.h
+xcovsrt.o : xcovsrt.c nrutil.o nrutil.h nr.h
+xcrank.o : xcrank.c nrutil.o nrutil.h nr.h
+xcyclic.o : xcyclic.c nrutil.o nrutil.h nr.h
+xdawson.o : xdawson.c nrutil.o nrutil.h nr.h
+xdbrent.o : xdbrent.c nr.h
+xddpoly.o : xddpoly.c nrutil.o nrutil.h nr.h
+xdecchk.o : xdecchk.c nr.h
+xdf1dim.o : xdf1dim.c nrutil.o nrutil.h nr.h
+xdfpmin.o : xdfpmin.c nrutil.o nrutil.h nr.h
+xdfridr.o : xdfridr.c nrutil.h nr.h
+xdftint.o : xdftint.c nr.h
+xdlinmin.o : xdlinmin.c nrutil.o nrutil.h nr.h
+xeclass.o : xeclass.c nrutil.o nrutil.h nr.h
+xeclazz.o : xeclazz.c nrutil.o nrutil.h nr.h
+xei.o : xei.c nrutil.o nrutil.h nr.h
+xeigsrt.o : xeigsrt.c nrutil.o nrutil.h nr.h
+xelle.o : xelle.c nrutil.o nrutil.h nr.h
+xellf.o : xellf.c nrutil.o nrutil.h nr.h
+xellpi.o : xellpi.c nrutil.o nrutil.h nr.h
+xelmhes.o : xelmhes.c nrutil.o nrutil.h nr.h
+xerfcc.o : xerfcc.c nrutil.o nrutil.h nr.h
+xerff.o : xerff.c nrutil.o nrutil.h nr.h
+xerffc.o : xerffc.c nrutil.o nrutil.h nr.h
+xeulsum.o : xeulsum.c nrutil.o nrutil.h nr.h
+xevlmem.o : xevlmem.c nrutil.o nrutil.h nr.h
+xexpdev.o : xexpdev.c nr.h
+xexpint.o : xexpint.c nrutil.o nrutil.h nr.h
+xf1dim.o : xf1dim.c nrutil.o nrutil.h nr.h
+xfactln.o : xfactln.c nrutil.o nrutil.h nr.h
+xfactrl.o : xfactrl.c nrutil.o nrutil.h nr.h
+xfasper.o : xfasper.c nrutil.o nrutil.h nr.h
+xfgauss.o : xfgauss.c nrutil.h nr.h
+xfit.o : xfit.c nrutil.o nrutil.h nr.h
+xfitexy.o : xfitexy.c nrutil.o nrutil.h nr.h
+xfixrts.o : xfixrts.c complex.o complex.h nr.h
+xfleg.o : xfleg.c nrutil.o nrutil.h nr.h
+xflmoon.o : xflmoon.c nr.h
+xfour1.o : xfour1.c nrutil.o nrutil.h nr.h
+xfourfs.o : xfourfs.c nrutil.o nrutil.h nr.h
+xfourn.o : xfourn.c nrutil.o nrutil.h nr.h
+xfpoly.o : xfpoly.c nrutil.o nrutil.h nr.h
+xfred2.o : xfred2.c nrutil.o nrutil.h nr.h
+xfredin.o : xfredin.c nrutil.o nrutil.h nr.h
+xfrenel.o : xfrenel.c nrutil.o nrutil.h nr.h
+xfrprmn.o : xfrprmn.c nrutil.o nrutil.h nr.h
+xftest.o : xftest.c nrutil.o nrutil.h nr.h
+xgamdev.o : xgamdev.c nr.h
+xgammln.o : xgammln.c nrutil.o nrutil.h nr.h
+xgammp.o : xgammp.c nrutil.o nrutil.h nr.h
+xgammq.o : xgammq.c nrutil.o nrutil.h nr.h
+xgasdev.o : xgasdev.c nr.h
+xgaucof.o : xgaucof.c nrutil.o nrutil.h nr.h
+xgauher.o : xgauher.c nrutil.o nrutil.h nr.h
+xgaujac.o : xgaujac.c nrutil.o nrutil.h nr.h
+xgaulag.o : xgaulag.c nrutil.o nrutil.h nr.h
+xgauleg.o : xgauleg.c nrutil.o nrutil.h nr.h
+xgaussj.o : xgaussj.c nrutil.o nrutil.h nr.h
+xgcf.o : xgcf.c nrutil.o nrutil.h nr.h
+xgolden.o : xgolden.c nr.h
+xgser.o : xgser.c nrutil.o nrutil.h nr.h
+xhpsel.o : xhpsel.c nrutil.o nrutil.h nr.h
+xhpsort.o : xhpsort.c nrutil.o nrutil.h nr.h
+xhqr.o : xhqr.c nrutil.o nrutil.h nr.h
+xhuffman.o : xhuffman.c nrutil.o nrutil.h nr.h
+xhunt.o : xhunt.c nrutil.o nrutil.h nr.h
+xhypgeo.o : xhypgeo.c complex.o complex.h nrutil.h nr.h
+xicrc.o : xicrc.c nr.h
+xigray.o : xigray.c nr.h
+xindexx.o : xindexx.c nrutil.o nrutil.h nr.h
+xirbit1.o : xirbit1.c nr.h
+xirbit2.o : xirbit2.c nr.h
+xjacobi.o : xjacobi.c nrutil.o nrutil.h nr.h
+xjulday.o : xjulday.c nrutil.o nrutil.h nr.h
+xkendl1.o : xkendl1.c nrutil.o nrutil.h nr.h
+xkendl2.o : xkendl2.c nrutil.o nrutil.h nr.h
+xks2d1s.o : xks2d1s.c nrutil.o nrutil.h nr.h
+xks2d2s.o : xks2d2s.c nrutil.o nrutil.h nr.h
+xksone.o : xksone.c nrutil.o nrutil.h nr.h
+xkstwo.o : xkstwo.c nrutil.o nrutil.h nr.h
+xlaguer.o : xlaguer.c complex.o complex.h nr.h
+xlfit.o : xlfit.c nrutil.o nrutil.h nr.h
+xlinbcg.o : xlinbcg.c nrutil.o nrutil.h nr.h
+xlinmin.o : xlinmin.c nrutil.o nrutil.h nr.h
+xlocate.o : xlocate.c nrutil.o nrutil.h nr.h
+xlubksb.o : xlubksb.c nrutil.o nrutil.h nr.h
+xludcmp.o : xludcmp.c nrutil.o nrutil.h nr.h
+xmachar.o : xmachar.c nr.h
+xmedfit.o : xmedfit.c nrutil.o nrutil.h nr.h
+xmemcof.o : xmemcof.c nrutil.o nrutil.h nr.h
+xmgfas.o : xmgfas.c nrutil.o nrutil.h nr.h
+xmglin.o : xmglin.c nrutil.o nrutil.h nr.h
+xmidpnt.o : xmidpnt.c nr.h
+xmiser.o : xmiser.c nrutil.o nrutil.h nr.h
+xmmid.o : xmmid.c nrutil.o nrutil.h nr.h
+xmnbrak.o : xmnbrak.c nr.h
+xmnewt.o : xmnewt.c nrutil.o nrutil.h nr.h
+xmoment.o : xmoment.c nrutil.o nrutil.h nr.h
+xmppi.o : xmppi.c nrutil.o nrutil.h nr.h
+xmprove.o : xmprove.c nrutil.o nrutil.h nr.h
+xmrqcof.o : xmrqcof.c nrutil.o nrutil.h nr.h
+xmrqmin.o : xmrqmin.c nrutil.o nrutil.h nr.h
+xnewt.o : xnewt.c nrutil.o nrutil.h nr.h
+xodeint.o : xodeint.c nrutil.o nrutil.h nr.h
+xorthog.o : xorthog.c nrutil.o nrutil.h nr.h
+xpade.o : xpade.c nrutil.o nrutil.h nr.h
+xpccheb.o : xpccheb.c nrutil.o nrutil.h nr.h
+xpcshft.o : xpcshft.c nr.h
+xpearsn.o : xpearsn.c nr.h
+xperiod.o : xperiod.c nrutil.o nrutil.h nr.h
+xpiksr2.o : xpiksr2.c nrutil.o nrutil.h nr.h
+xpiksrt.o : xpiksrt.c nrutil.o nrutil.h nr.h
+xplgndr.o : xplgndr.c nrutil.o nrutil.h nr.h
+xpoidev.o : xpoidev.c nr.h
+xpolcoe.o : xpolcoe.c nrutil.o nrutil.h nr.h
+xpolcof.o : xpolcof.c nrutil.o nrutil.h nr.h
+xpoldiv.o : xpoldiv.c nrutil.o nrutil.h nr.h
+xpolin2.o : xpolin2.c nrutil.o nrutil.h nr.h
+xpolint.o : xpolint.c nrutil.o nrutil.h nr.h
+xpowell.o : xpowell.c nrutil.o nrutil.h nr.h
+xpredic.o : xpredic.c nrutil.o nrutil.h nr.h
+xprobks.o : xprobks.c nr.h
+xpsdes.o : xpsdes.c nr.h
+xpzextr.o : xpzextr.c nrutil.o nrutil.h nr.h
+xqgaus.o : xqgaus.c nr.h
+xqrdcmp.o : xqrdcmp.c nrutil.o nrutil.h nr.h
+xqromb.o : xqromb.c nr.h
+xqromo.o : xqromo.c nr.h
+xqroot.o : xqroot.c nrutil.o nrutil.h nr.h
+xqrsolv.o : xqrsolv.c nrutil.o nrutil.h nr.h
+xqrupdt.o : xqrupdt.c nrutil.o nrutil.h nr.h
+xqsimp.o : xqsimp.c nr.h
+xqtrap.o : xqtrap.c nr.h
+xquad3d.o : xquad3d.c nr.h
+xran.o : xran.c nr.h
+xran4.o : xran4.c nr.h
+xrank.o : xrank.c nrutil.o nrutil.h nr.h
+xratint.o : xratint.c nrutil.o nrutil.h nr.h
+xratlsq.o : xratlsq.c nrutil.o nrutil.h nr.h
+xrc.o : xrc.c nrutil.o nrutil.h nr.h
+xrd.o : xrd.c nrutil.o nrutil.h nr.h
+xrealft.o : xrealft.c nrutil.o nrutil.h nr.h
+xrf.o : xrf.c nrutil.o nrutil.h nr.h
+xrj.o : xrj.c nrutil.o nrutil.h nr.h
+xrk4.o : xrk4.c nrutil.o nrutil.h nr.h
+xrkdumb.o : xrkdumb.c nrutil.o nrutil.h nr.h
+xrkqs.o : xrkqs.c nrutil.o nrutil.h nr.h
+xrlft3.o : xrlft3.c nrutil.o nrutil.h nr.h
+xrofunc.o : xrofunc.c nrutil.o nrutil.h nr.h
+xrtbis.o : xrtbis.c nrutil.o nrutil.h nr.h
+xrtflsp.o : xrtflsp.c nrutil.o nrutil.h nr.h
+xrtnewt.o : xrtnewt.c nrutil.o nrutil.h nr.h
+xrtsafe.o : xrtsafe.c nrutil.o nrutil.h nr.h
+xrtsec.o : xrtsec.c nrutil.o nrutil.h nr.h
+xrzextr.o : xrzextr.c nrutil.o nrutil.h nr.h
+xsavgol.o : xsavgol.c nrutil.o nrutil.h nr.h
+xscrsho.o : xscrsho.c nr.h
+xselect.o : xselect.c nrutil.o nrutil.h nr.h
+xselip.o : xselip.c nrutil.o nrutil.h nr.h
+xshell.o : xshell.c nrutil.o nrutil.h nr.h
+xsimplx.o : xsimplx.c nrutil.o nrutil.h nr.h
+xsimpr.o : xsimpr.c nrutil.o nrutil.h nr.h
+xsinft.o : xsinft.c nrutil.o nrutil.h nr.h
+xsncndn.o : xsncndn.c nrutil.o nrutil.h nr.h
+xsobseq.o : xsobseq.c nrutil.o nrutil.h nr.h
+xsobseq2.o : xsobseq2.c nrutil.h nr.h
+xsor.o : xsor.c nrutil.o nrutil.h nr.h
+xsort.o : xsort.c nrutil.o nrutil.h nr.h
+xsort2.o : xsort2.c nrutil.o nrutil.h nr.h
+xsort3.o : xsort3.c nrutil.o nrutil.h nr.h
+xspctrm.o : xspctrm.c nrutil.o nrutil.h nr.h
+xspear.o : xspear.c nrutil.o nrutil.h nr.h
+xsphbes.o : xsphbes.c nrutil.o nrutil.h nr.h
+xsphfpt.o : xsphfpt.c 
+xsplie2.o : xsplie2.c nrutil.o nrutil.h nr.h
+xsplin2.o : xsplin2.c nrutil.o nrutil.h nr.h
+xspline.o : xspline.c nrutil.o nrutil.h nr.h
+xsplint.o : xsplint.c nrutil.o nrutil.h nr.h
+xsprsax.o : xsprsax.c nrutil.o nrutil.h nr.h
+xsprsin.o : xsprsin.c nrutil.o nrutil.h nr.h
+xsprspm.o : xsprspm.c nrutil.o nrutil.h nr.h
+xsprstm.o : xsprstm.c nrutil.o nrutil.h nr.h
+xsprstp.o : xsprstp.c nrutil.o nrutil.h nr.h
+xsprstx.o : xsprstx.c nrutil.o nrutil.h nr.h
+xstifbs.o : xstifbs.c nrutil.h nr.h
+xstiff.o : xstiff.c nrutil.h nr.h
+xstoerm.o : xstoerm.c nrutil.o nrutil.h nr.h
+xsvbksb.o : xsvbksb.c nrutil.o nrutil.h nr.h
+xsvdcmp.o : xsvdcmp.c nrutil.o nrutil.h nr.h
+xsvdfit.o : xsvdfit.c nrutil.o nrutil.h nr.h
+xsvdvar.o : xsvdvar.c nrutil.o nrutil.h nr.h
+xtoeplz.o : xtoeplz.c nr.h
+xtptest.o : xtptest.c nrutil.o nrutil.h nr.h
+xtqli.o : xtqli.c nrutil.o nrutil.h nr.h
+xtrapzd.o : xtrapzd.c nr.h
+xtred2.o : xtred2.c nrutil.o nrutil.h nr.h
+xtridag.o : xtridag.c nrutil.o nrutil.h nr.h
+xttest.o : xttest.c nrutil.o nrutil.h nr.h
+xtutest.o : xtutest.c nrutil.o nrutil.h nr.h
+xtwofft.o : xtwofft.c nrutil.o nrutil.h nr.h
+xvander.o : xvander.c nrutil.o nrutil.h nr.h
+xvegas.o : xvegas.c nrutil.o nrutil.h nr.h
+xvoltra.o : xvoltra.c nrutil.o nrutil.h nr.h
+xwt1.o : xwt1.c nrutil.o nrutil.h nr.h
+xwtn.o : xwtn.c nrutil.o nrutil.h nr.h
+xzbrac.o : xzbrac.c nr.h
+xzbrak.o : xzbrak.c nrutil.o nrutil.h nr.h
+xzbrent.o : xzbrent.c nrutil.o nrutil.h nr.h
+xzrhqr.o : xzrhqr.c nrutil.o nrutil.h nr.h
+xzriddr.o : xzriddr.c nrutil.o nrutil.h nr.h
+xzroots.o : xzroots.c complex.o complex.h nr.h
+
+
+xairy.reslt : xairy.out fncval.dat
+	xairy.out > xairy.reslt && \
+	$(NRDIFF) xairy.reslt $(NRANS)
+
+xamebsa.reslt : xamebsa.resp xamebsa.out
+	xamebsa.out < $< > xamebsa.reslt && \
+	$(NRDIFF) xamebsa.reslt $(NRANS)
+
+xamoeba.reslt : xamoeba.out
+	xamoeba.out > xamoeba.reslt && \
+	$(NRDIFF) xamoeba.reslt $(NRANS)
+
+xanneal.reslt : xanneal.out
+	xanneal.out > xanneal.reslt && \
+	$(NRDIFF) xanneal.reslt $(NRANS)
+
+xarcode.reslt : xarcode.resp xarcode.out text.dat
+	xarcode.out < $< > xarcode.reslt && \
+	$(NRDIFF) xarcode.reslt $(NRANS)
+
+xavevar.reslt : xavevar.out
+	xavevar.out > xavevar.reslt && \
+	$(NRDIFF) xavevar.reslt $(NRANS)
+
+xbalanc.reslt : xbalanc.out
+	xbalanc.out > xbalanc.reslt && \
+	$(NRDIFF) xbalanc.reslt $(NRANS)
+
+xbandec.reslt : xbandec.out
+	xbandec.out > xbandec.reslt && \
+	$(NRDIFF) xbandec.reslt $(NRANS)
+
+xbanmul.reslt : xbanmul.out
+	xbanmul.out > xbanmul.reslt && \
+	$(NRDIFF) xbanmul.reslt $(NRANS)
+
+xbcucof.reslt : xbcucof.out
+	xbcucof.out > xbcucof.reslt && \
+	$(NRDIFF) xbcucof.reslt $(NRANS)
+
+xbcuint.reslt : xbcuint.out
+	xbcuint.out > xbcuint.reslt && \
+	$(NRDIFF) xbcuint.reslt $(NRANS)
+
+xbeschb.reslt : xbeschb.resp xbeschb.out
+	xbeschb.out < $< > xbeschb.reslt && \
+	$(NRDIFF) xbeschb.reslt $(NRANS)
+
+xbessi.reslt : xbessi.out fncval.dat
+	xbessi.out > xbessi.reslt && \
+	$(NRDIFF) xbessi.reslt $(NRANS)
+
+xbessi0.reslt : xbessi0.out fncval.dat
+	xbessi0.out > xbessi0.reslt && \
+	$(NRDIFF) xbessi0.reslt $(NRANS)
+
+xbessi1.reslt : xbessi1.out fncval.dat
+	xbessi1.out > xbessi1.reslt && \
+	$(NRDIFF) xbessi1.reslt $(NRANS)
+
+xbessik.reslt : xbessik.out fncval.dat
+	xbessik.out > xbessik.reslt && \
+	$(NRDIFF) xbessik.reslt $(NRANS)
+
+xbessj.reslt : xbessj.out fncval.dat
+	xbessj.out > xbessj.reslt && \
+	$(NRDIFF) xbessj.reslt $(NRANS)
+
+xbessj0.reslt : xbessj0.out fncval.dat
+	xbessj0.out > xbessj0.reslt && \
+	$(NRDIFF) xbessj0.reslt $(NRANS)
+
+xbessj1.reslt : xbessj1.out fncval.dat
+	xbessj1.out > xbessj1.reslt && \
+	$(NRDIFF) xbessj1.reslt $(NRANS)
+
+xbessjy.reslt : xbessjy.out fncval.dat
+	xbessjy.out > xbessjy.reslt && \
+	$(NRDIFF) xbessjy.reslt $(NRANS)
+
+xbessk.reslt : xbessk.out fncval.dat
+	xbessk.out > xbessk.reslt && \
+	$(NRDIFF) xbessk.reslt $(NRANS)
+
+xbessk0.reslt : xbessk0.out fncval.dat
+	xbessk0.out > xbessk0.reslt && \
+	$(NRDIFF) xbessk0.reslt $(NRANS)
+
+xbessk1.reslt : xbessk1.out fncval.dat
+	xbessk1.out > xbessk1.reslt && \
+	$(NRDIFF) xbessk1.reslt $(NRANS)
+
+xbessy.reslt : xbessy.out fncval.dat
+	xbessy.out > xbessy.reslt && \
+	$(NRDIFF) xbessy.reslt $(NRANS)
+
+xbessy0.reslt : xbessy0.out fncval.dat
+	xbessy0.out > xbessy0.reslt && \
+	$(NRDIFF) xbessy0.reslt $(NRANS)
+
+xbessy1.reslt : xbessy1.out fncval.dat
+	xbessy1.out > xbessy1.reslt && \
+	$(NRDIFF) xbessy1.reslt $(NRANS)
+
+xbeta.reslt : xbeta.out fncval.dat
+	xbeta.out > xbeta.reslt && \
+	$(NRDIFF) xbeta.reslt $(NRANS)
+
+xbetai.reslt : xbetai.out fncval.dat
+	xbetai.out > xbetai.reslt && \
+	$(NRDIFF) xbetai.reslt $(NRANS)
+
+xbico.reslt : xbico.out fncval.dat
+	xbico.out > xbico.reslt && \
+	$(NRDIFF) xbico.reslt $(NRANS)
+
+xbnldev.reslt : xbnldev.resp xbnldev.out
+	xbnldev.out < $< > xbnldev.reslt && \
+	$(NRDIFF) xbnldev.reslt $(NRANS)
+
+xbrent.reslt : xbrent.out
+	xbrent.out > xbrent.reslt && \
+	$(NRDIFF) xbrent.reslt $(NRANS)
+
+xbroydn.reslt : xbroydn.out
+	xbroydn.out > xbroydn.reslt && \
+	$(NRDIFF) xbroydn.reslt $(NRANS)
+
+xbsstep.reslt : xbsstep.out
+	xbsstep.out > xbsstep.reslt && \
+	$(NRDIFF) xbsstep.reslt $(NRANS)
+
+xcaldat.reslt : xcaldat.out dates1.dat
+	xcaldat.out > xcaldat.reslt && \
+	$(NRDIFF) xcaldat.reslt $(NRANS)
+
+xchder.reslt : xchder.resp xchder.out
+	xchder.out < $< > xchder.reslt && \
+	$(NRDIFF) xchder.reslt $(NRANS)
+
+xchebev.reslt : xchebev.resp xchebev.out
+	xchebev.out < $< > xchebev.reslt && \
+	$(NRDIFF) xchebev.reslt $(NRANS)
+
+xchebft.reslt : xchebft.resp xchebft.out
+	xchebft.out < $< > xchebft.reslt && \
+	$(NRDIFF) xchebft.reslt $(NRANS)
+
+xchebpc.reslt : xchebpc.resp xchebpc.out
+	xchebpc.out < $< > xchebpc.reslt && \
+	$(NRDIFF) xchebpc.reslt $(NRANS)
+
+xchint.reslt : xchint.resp xchint.out
+	xchint.out < $< > xchint.reslt && \
+	$(NRDIFF) xchint.reslt $(NRANS)
+
+xcholsl.reslt : xcholsl.out
+	xcholsl.out > xcholsl.reslt && \
+	$(NRDIFF) xcholsl.reslt $(NRANS)
+
+xchsone.reslt : xchsone.out
+	xchsone.out > xchsone.reslt && \
+	$(NRDIFF) xchsone.reslt $(NRANS)
+
+xchstwo.reslt : xchstwo.out
+	xchstwo.out > xchstwo.reslt && \
+	$(NRDIFF) xchstwo.reslt $(NRANS)
+
+xcisi.reslt : xcisi.out fncval.dat
+	xcisi.out > xcisi.reslt && \
+	$(NRDIFF) xcisi.reslt $(NRANS)
+
+xcntab1.reslt : xcntab1.out table1.dat
+	xcntab1.out > xcntab1.reslt && \
+	$(NRDIFF) xcntab1.reslt $(NRANS)
+
+xcntab2.reslt : xcntab2.out table1.dat
+	xcntab2.out > xcntab2.reslt && \
+	$(NRDIFF) xcntab2.reslt $(NRANS)
+
+xconvlv.reslt : xconvlv.out
+	xconvlv.out > xconvlv.reslt && \
+	$(NRDIFF) xconvlv.reslt $(NRANS)
+
+xcorrel.reslt : xcorrel.out
+	xcorrel.out > xcorrel.reslt && \
+	$(NRDIFF) xcorrel.reslt $(NRANS)
+
+xcosft1.reslt : xcosft1.resp xcosft1.out
+	xcosft1.out < $< > xcosft1.reslt && \
+	$(NRDIFF) xcosft1.reslt $(NRANS)
+
+xcosft2.reslt : xcosft2.resp xcosft2.out
+	xcosft2.out < $< > xcosft2.reslt && \
+	$(NRDIFF) xcosft2.reslt $(NRANS)
+
+xcovsrt.reslt : xcovsrt.resp xcovsrt.out
+	xcovsrt.out < $< > xcovsrt.reslt && \
+	$(NRDIFF) xcovsrt.reslt $(NRANS)
+
+xcrank.reslt : xcrank.resp xcrank.out table2.dat
+	xcrank.out < $< > xcrank.reslt && \
+	$(NRDIFF) xcrank.reslt $(NRANS)
+
+xcyclic.reslt : xcyclic.out
+	xcyclic.out > xcyclic.reslt && \
+	$(NRDIFF) xcyclic.reslt $(NRANS)
+
+xdawson.reslt : xdawson.out fncval.dat
+	xdawson.out > xdawson.reslt && \
+	$(NRDIFF) xdawson.reslt $(NRANS)
+
+xdbrent.reslt : xdbrent.out
+	xdbrent.out > xdbrent.reslt && \
+	$(NRDIFF) xdbrent.reslt $(NRANS)
+
+xddpoly.reslt : xddpoly.resp xddpoly.out
+	xddpoly.out < $< > xddpoly.reslt && \
+	$(NRDIFF) xddpoly.reslt $(NRANS)
+
+xdecchk.reslt : xdecchk.resp xdecchk.out
+	xdecchk.out < $< > xdecchk.reslt && \
+	$(NRDIFF) xdecchk.reslt $(NRANS)
+
+xdf1dim.reslt : xdf1dim.resp xdf1dim.out
+	xdf1dim.out < $< > xdf1dim.reslt && \
+	$(NRDIFF) xdf1dim.reslt $(NRANS)
+
+xdfpmin.reslt : xdfpmin.out
+	xdfpmin.out > xdfpmin.reslt && \
+	$(NRDIFF) xdfpmin.reslt $(NRANS)
+
+xdfridr.reslt : xdfridr.resp xdfridr.out
+	xdfridr.out < $< > xdfridr.reslt && \
+	$(NRDIFF) xdfridr.reslt $(NRANS)
+
+xdftint.reslt : xdftint.resp xdftint.out
+	xdftint.out < $< > xdftint.reslt && \
+	$(NRDIFF) xdftint.reslt $(NRANS)
+
+xdlinmin.reslt : xdlinmin.out
+	xdlinmin.out > xdlinmin.reslt && \
+	$(NRDIFF) xdlinmin.reslt $(NRANS)
+
+xeclass.reslt : xeclass.out
+	xeclass.out > xeclass.reslt && \
+	$(NRDIFF) xeclass.reslt $(NRANS)
+
+xeclazz.reslt : xeclazz.out
+	xeclazz.out > xeclazz.reslt && \
+	$(NRDIFF) xeclazz.reslt $(NRANS)
+
+xei.reslt : xei.out fncval.dat
+	xei.out > xei.reslt && \
+	$(NRDIFF) xei.reslt $(NRANS)
+
+xeigsrt.reslt : xeigsrt.out
+	xeigsrt.out > xeigsrt.reslt && \
+	$(NRDIFF) xeigsrt.reslt $(NRANS)
+
+xelle.reslt : xelle.out fncval.dat
+	xelle.out > xelle.reslt && \
+	$(NRDIFF) xelle.reslt $(NRANS)
+
+xellf.reslt : xellf.out fncval.dat
+	xellf.out > xellf.reslt && \
+	$(NRDIFF) xellf.reslt $(NRANS)
+
+xellpi.reslt : xellpi.out fncval.dat
+	xellpi.out > xellpi.reslt && \
+	$(NRDIFF) xellpi.reslt $(NRANS)
+
+xelmhes.reslt : xelmhes.out
+	xelmhes.out > xelmhes.reslt && \
+	$(NRDIFF) xelmhes.reslt $(NRANS)
+
+xerfcc.reslt : xerfcc.out fncval.dat
+	xerfcc.out > xerfcc.reslt && \
+	$(NRDIFF) xerfcc.reslt $(NRANS)
+
+xerff.reslt : xerff.out fncval.dat
+	xerff.out > xerff.reslt && \
+	$(NRDIFF) xerff.reslt $(NRANS)
+
+xerffc.reslt : xerffc.out fncval.dat
+	xerffc.out > xerffc.reslt && \
+	$(NRDIFF) xerffc.reslt $(NRANS)
+
+xeulsum.reslt : xeulsum.resp xeulsum.out
+	xeulsum.out < $< > xeulsum.reslt && \
+	$(NRDIFF) xeulsum.reslt $(NRANS)
+
+xevlmem.reslt : xevlmem.out spctrl.dat
+	xevlmem.out > xevlmem.reslt && \
+	$(NRDIFF) xevlmem.reslt $(NRANS)
+
+xexpdev.reslt : xexpdev.out
+	xexpdev.out > xexpdev.reslt && \
+	$(NRDIFF) xexpdev.reslt $(NRANS)
+
+xexpint.reslt : xexpint.out fncval.dat
+	xexpint.out > xexpint.reslt && \
+	$(NRDIFF) xexpint.reslt $(NRANS)
+
+xf1dim.reslt : xf1dim.resp xf1dim.out
+	xf1dim.out < $< > xf1dim.reslt && \
+	$(NRDIFF) xf1dim.reslt $(NRANS)
+
+xfactln.reslt : xfactln.out fncval.dat
+	xfactln.out > xfactln.reslt && \
+	$(NRDIFF) xfactln.reslt $(NRANS)
+
+xfactrl.reslt : xfactrl.out fncval.dat
+	xfactrl.out > xfactrl.reslt && \
+	$(NRDIFF) xfactrl.reslt $(NRANS)
+
+xfasper.reslt : xfasper.out
+	xfasper.out > xfasper.reslt && \
+	$(NRDIFF) xfasper.reslt $(NRANS)
+
+xfgauss.reslt : xfgauss.out
+	xfgauss.out > xfgauss.reslt && \
+	$(NRDIFF) xfgauss.reslt $(NRANS)
+
+xfit.reslt : xfit.out
+	xfit.out > xfit.reslt && \
+	$(NRDIFF) xfit.reslt $(NRANS)
+
+xfitexy.reslt : xfitexy.out
+	xfitexy.out > xfitexy.reslt && \
+	$(NRDIFF) xfitexy.reslt $(NRANS)
+
+xfixrts.reslt : xfixrts.out
+	xfixrts.out > xfixrts.reslt && \
+	$(NRDIFF) xfixrts.reslt $(NRANS)
+
+xfleg.reslt : xfleg.out
+	xfleg.out > xfleg.reslt && \
+	$(NRDIFF) xfleg.reslt $(NRANS)
+
+xflmoon.reslt : xflmoon.resp xflmoon.out
+	xflmoon.out < $< > xflmoon.reslt && \
+	$(NRDIFF) xflmoon.reslt $(NRANS)
+
+xfour1.reslt : xfour1.resp xfour1.out
+	xfour1.out < $< > xfour1.reslt && \
+	$(NRDIFF) xfour1.reslt $(NRANS)
+
+xfourfs.reslt : xfourfs.out
+	xfourfs.out > xfourfs.reslt && \
+	$(NRDIFF) xfourfs.reslt $(NRANS)
+
+xfourn.reslt : xfourn.out
+	xfourn.out > xfourn.reslt && \
+	$(NRDIFF) xfourn.reslt $(NRANS)
+
+xfpoly.reslt : xfpoly.out
+	xfpoly.out > xfpoly.reslt && \
+	$(NRDIFF) xfpoly.reslt $(NRANS)
+
+xfred2.reslt : xfred2.out
+	xfred2.out > xfred2.reslt && \
+	$(NRDIFF) xfred2.reslt $(NRANS)
+
+xfredin.reslt : xfredin.resp xfredin.out
+	xfredin.out < $< > xfredin.reslt && \
+	$(NRDIFF) xfredin.reslt $(NRANS)
+
+xfrenel.reslt : xfrenel.out fncval.dat
+	xfrenel.out > xfrenel.reslt && \
+	$(NRDIFF) xfrenel.reslt $(NRANS)
+
+xfrprmn.reslt : xfrprmn.out
+	xfrprmn.out > xfrprmn.reslt && \
+	$(NRDIFF) xfrprmn.reslt $(NRANS)
+
+xftest.reslt : xftest.out
+	xftest.out > xftest.reslt && \
+	$(NRDIFF) xftest.reslt $(NRANS)
+
+xgamdev.reslt : xgamdev.resp xgamdev.out
+	xgamdev.out < $< > xgamdev.reslt && \
+	$(NRDIFF) xgamdev.reslt $(NRANS)
+
+xgammln.reslt : xgammln.out fncval.dat
+	xgammln.out > xgammln.reslt && \
+	$(NRDIFF) xgammln.reslt $(NRANS)
+
+xgammp.reslt : xgammp.out fncval.dat
+	xgammp.out > xgammp.reslt && \
+	$(NRDIFF) xgammp.reslt $(NRANS)
+
+xgammq.reslt : xgammq.out fncval.dat
+	xgammq.out > xgammq.reslt && \
+	$(NRDIFF) xgammq.reslt $(NRANS)
+
+xgasdev.reslt : xgasdev.out
+	xgasdev.out > xgasdev.reslt && \
+	$(NRDIFF) xgasdev.reslt $(NRANS)
+
+xgaucof.reslt : xgaucof.resp xgaucof.out
+	xgaucof.out < $< > xgaucof.reslt && \
+	$(NRDIFF) xgaucof.reslt $(NRANS)
+
+xgauher.reslt : xgauher.resp xgauher.out
+	xgauher.out < $< > xgauher.reslt && \
+	$(NRDIFF) xgauher.reslt $(NRANS)
+
+xgaujac.reslt : xgaujac.resp xgaujac.out
+	xgaujac.out < $< > xgaujac.reslt && \
+	$(NRDIFF) xgaujac.reslt $(NRANS)
+
+xgaulag.reslt : xgaulag.resp xgaulag.out
+	xgaulag.out < $< > xgaulag.reslt && \
+	$(NRDIFF) xgaulag.reslt $(NRANS)
+
+xgauleg.reslt : xgauleg.out
+	xgauleg.out > xgauleg.reslt && \
+	$(NRDIFF) xgauleg.reslt $(NRANS)
+
+xgaussj.reslt : xgaussj.resp xgaussj.out matrx1.dat
+	xgaussj.out < $< > xgaussj.reslt && \
+	$(NRDIFF) xgaussj.reslt $(NRANS)
+
+xgcf.reslt : xgcf.out fncval.dat
+	xgcf.out > xgcf.reslt && \
+	$(NRDIFF) xgcf.reslt $(NRANS)
+
+xgolden.reslt : xgolden.out
+	xgolden.out > xgolden.reslt && \
+	$(NRDIFF) xgolden.reslt $(NRANS)
+
+xgser.reslt : xgser.out fncval.dat
+	xgser.out > xgser.reslt && \
+	$(NRDIFF) xgser.reslt $(NRANS)
+
+xhpsel.reslt : xhpsel.resp xhpsel.out tarray.dat
+	xhpsel.out < $< > xhpsel.reslt && \
+	$(NRDIFF) xhpsel.reslt $(NRANS)
+
+xhpsort.reslt : xhpsort.out tarray.dat
+	xhpsort.out > xhpsort.reslt && \
+	$(NRDIFF) xhpsort.reslt $(NRANS)
+
+xhqr.reslt : xhqr.out
+	xhqr.out > xhqr.reslt && \
+	$(NRDIFF) xhqr.reslt $(NRANS)
+
+xhuffman.reslt : xhuffman.resp xhuffman.out text.dat
+	xhuffman.out < $< > xhuffman.reslt && \
+	$(NRDIFF) xhuffman.reslt $(NRANS)
+
+xhunt.reslt : xhunt.out
+	xhunt.out > xhunt.reslt && \
+	$(NRDIFF) xhunt.reslt $(NRANS)
+
+xhypgeo.reslt : xhypgeo.resp xhypgeo.out
+	xhypgeo.out < $< > xhypgeo.reslt && \
+	$(NRDIFF) xhypgeo.reslt $(NRANS)
+
+xicrc.reslt : xicrc.resp xicrc.out
+	xicrc.out < $< > xicrc.reslt && \
+	$(NRDIFF) xicrc.reslt $(NRANS)
+
+xigray.reslt : xigray.resp xigray.out
+	xigray.out < $< > xigray.reslt && \
+	$(NRDIFF) xigray.reslt $(NRANS)
+
+xindexx.reslt : xindexx.out tarray.dat
+	xindexx.out > xindexx.reslt && \
+	$(NRDIFF) xindexx.reslt $(NRANS)
+
+xirbit1.reslt : xirbit1.out
+	xirbit1.out > xirbit1.reslt && \
+	$(NRDIFF) xirbit1.reslt $(NRANS)
+
+xirbit2.reslt : xirbit2.out
+	xirbit2.out > xirbit2.reslt && \
+	$(NRDIFF) xirbit2.reslt $(NRANS)
+
+xjacobi.reslt : xjacobi.resp xjacobi.out
+	xjacobi.out < $< > xjacobi.reslt && \
+	$(NRDIFF) xjacobi.reslt $(NRANS)
+
+xjulday.reslt : xjulday.resp xjulday.out dates1.dat
+	xjulday.out < $< > xjulday.reslt && \
+	$(NRDIFF) xjulday.reslt $(NRANS)
+
+xkendl1.reslt : xkendl1.out
+	xkendl1.out > xkendl1.reslt && \
+	$(NRDIFF) xkendl1.reslt $(NRANS)
+
+xkendl2.reslt : xkendl2.out
+	xkendl2.out > xkendl2.reslt && \
+	$(NRDIFF) xkendl2.reslt $(NRANS)
+
+xks2d1s.reslt : xks2d1s.resp xks2d1s.out
+	xks2d1s.out < $< > xks2d1s.reslt && \
+	$(NRDIFF) xks2d1s.reslt $(NRANS)
+
+xks2d2s.reslt : xks2d2s.resp xks2d2s.out
+	xks2d2s.out < $< > xks2d2s.reslt && \
+	$(NRDIFF) xks2d2s.reslt $(NRANS)
+
+xksone.reslt : xksone.out
+	xksone.out > xksone.reslt && \
+	$(NRDIFF) xksone.reslt $(NRANS)
+
+xkstwo.reslt : xkstwo.out
+	xkstwo.out > xkstwo.reslt && \
+	$(NRDIFF) xkstwo.reslt $(NRANS)
+
+xlaguer.reslt : xlaguer.out
+	xlaguer.out > xlaguer.reslt && \
+	$(NRDIFF) xlaguer.reslt $(NRANS)
+
+xlfit.reslt : xlfit.resp xlfit.out
+	xlfit.out < $< > xlfit.reslt && \
+	$(NRDIFF) xlfit.reslt $(NRANS)
+
+xlinbcg.reslt : xlinbcg.resp xlinbcg.out
+	xlinbcg.out < $< > xlinbcg.reslt && \
+	$(NRDIFF) xlinbcg.reslt $(NRANS)
+
+xlinmin.reslt : xlinmin.out
+	xlinmin.out > xlinmin.reslt && \
+	$(NRDIFF) xlinmin.reslt $(NRANS)
+
+xlocate.reslt : xlocate.out
+	xlocate.out > xlocate.reslt && \
+	$(NRDIFF) xlocate.reslt $(NRANS)
+
+xlubksb.reslt : xlubksb.resp xlubksb.out matrx1.dat
+	xlubksb.out < $< > xlubksb.reslt && \
+	$(NRDIFF) xlubksb.reslt $(NRANS)
+
+xludcmp.reslt : xludcmp.resp xludcmp.out matrx1.dat
+	xludcmp.out < $< > xludcmp.reslt && \
+	$(NRDIFF) xludcmp.reslt $(NRANS)
+
+xmachar.reslt : xmachar.out
+	xmachar.out > xmachar.reslt && \
+	$(NRDIFF) xmachar.reslt $(NRANS)
+
+xmedfit.reslt : xmedfit.out
+	xmedfit.out > xmedfit.reslt && \
+	$(NRDIFF) xmedfit.reslt $(NRANS)
+
+xmemcof.reslt : xmemcof.out spctrl.dat
+	xmemcof.out > xmemcof.reslt && \
+	$(NRDIFF) xmemcof.reslt $(NRANS)
+
+xmgfas.reslt : xmgfas.out
+	xmgfas.out > xmgfas.reslt && \
+	$(NRDIFF) xmgfas.reslt $(NRANS)
+
+xmglin.reslt : xmglin.out
+	xmglin.out > xmglin.reslt && \
+	$(NRDIFF) xmglin.reslt $(NRANS)
+
+xmidpnt.reslt : xmidpnt.out
+	xmidpnt.out > xmidpnt.reslt && \
+	$(NRDIFF) xmidpnt.reslt $(NRANS)
+
+xmiser.reslt : xmiser.resp xmiser.out
+	xmiser.out < $< > xmiser.reslt && \
+	$(NRDIFF) xmiser.reslt $(NRANS)
+
+xmmid.reslt : xmmid.resp xmmid.out
+	xmmid.out < $< > xmmid.reslt && \
+	$(NRDIFF) xmmid.reslt $(NRANS)
+
+xmnbrak.reslt : xmnbrak.out
+	xmnbrak.out > xmnbrak.reslt && \
+	$(NRDIFF) xmnbrak.reslt $(NRANS)
+
+xmnewt.reslt : xmnewt.resp xmnewt.out
+	xmnewt.out < $< > xmnewt.reslt && \
+	$(NRDIFF) xmnewt.reslt $(NRANS)
+
+xmoment.reslt : xmoment.out
+	xmoment.out > xmoment.reslt && \
+	$(NRDIFF) xmoment.reslt $(NRANS)
+
+xmppi.reslt : xmppi.resp xmppi.out
+	xmppi.out < $< > xmppi.reslt && \
+	$(NRDIFF) xmppi.reslt $(NRANS)
+
+xmprove.reslt : xmprove.out
+	xmprove.out > xmprove.reslt && \
+	$(NRDIFF) xmprove.reslt $(NRANS)
+
+xmrqcof.reslt : xmrqcof.out
+	xmrqcof.out > xmrqcof.reslt && \
+	$(NRDIFF) xmrqcof.reslt $(NRANS)
+
+xmrqmin.reslt : xmrqmin.resp xmrqmin.out
+	xmrqmin.out < $< > xmrqmin.reslt && \
+	$(NRDIFF) xmrqmin.reslt $(NRANS)
+
+xnewt.reslt : xnewt.out
+	xnewt.out > xnewt.reslt && \
+	$(NRDIFF) xnewt.reslt $(NRANS)
+
+xodeint.reslt : xodeint.out
+	xodeint.out > xodeint.reslt && \
+	$(NRDIFF) xodeint.reslt $(NRANS)
+
+xorthog.reslt : xorthog.resp xorthog.out
+	xorthog.out < $< > xorthog.reslt && \
+	$(NRDIFF) xorthog.reslt $(NRANS)
+
+xpade.reslt : xpade.resp xpade.out
+	xpade.out < $< > xpade.reslt && \
+	$(NRDIFF) xpade.reslt $(NRANS)
+
+xpccheb.reslt : xpccheb.out
+	xpccheb.out > xpccheb.reslt && \
+	$(NRDIFF) xpccheb.reslt $(NRANS)
+
+xpcshft.reslt : xpcshft.resp xpcshft.out
+	xpcshft.out < $< > xpcshft.reslt && \
+	$(NRDIFF) xpcshft.reslt $(NRANS)
+
+xpearsn.reslt : xpearsn.out
+	xpearsn.out > xpearsn.reslt && \
+	$(NRDIFF) xpearsn.reslt $(NRANS)
+
+xperiod.reslt : xperiod.out
+	xperiod.out > xperiod.reslt && \
+	$(NRDIFF) xperiod.reslt $(NRANS)
+
+xpiksr2.reslt : xpiksr2.resp xpiksr2.out tarray.dat
+	xpiksr2.out < $< > xpiksr2.reslt && \
+	$(NRDIFF) xpiksr2.reslt $(NRANS)
+
+xpiksrt.reslt : xpiksrt.out tarray.dat
+	xpiksrt.out > xpiksrt.reslt && \
+	$(NRDIFF) xpiksrt.reslt $(NRANS)
+
+xplgndr.reslt : xplgndr.out fncval.dat
+	xplgndr.out > xplgndr.reslt && \
+	$(NRDIFF) xplgndr.reslt $(NRANS)
+
+xpoidev.reslt : xpoidev.resp xpoidev.out
+	xpoidev.out < $< > xpoidev.reslt && \
+	$(NRDIFF) xpoidev.reslt $(NRANS)
+
+xpolcoe.reslt : xpolcoe.resp xpolcoe.out
+	xpolcoe.out < $< > xpolcoe.reslt && \
+	$(NRDIFF) xpolcoe.reslt $(NRANS)
+
+xpolcof.reslt : xpolcof.resp xpolcof.out
+	xpolcof.out < $< > xpolcof.reslt && \
+	$(NRDIFF) xpolcof.reslt $(NRANS)
+
+xpoldiv.reslt : xpoldiv.out
+	xpoldiv.out > xpoldiv.reslt && \
+	$(NRDIFF) xpoldiv.reslt $(NRANS)
+
+xpolin2.reslt : xpolin2.out
+	xpolin2.out > xpolin2.reslt && \
+	$(NRDIFF) xpolin2.reslt $(NRANS)
+
+xpolint.reslt : xpolint.resp xpolint.out
+	xpolint.out < $< > xpolint.reslt && \
+	$(NRDIFF) xpolint.reslt $(NRANS)
+
+xpowell.reslt : xpowell.out
+	xpowell.out > xpowell.reslt && \
+	$(NRDIFF) xpowell.reslt $(NRANS)
+
+xpredic.reslt : xpredic.out
+	xpredic.out > xpredic.reslt && \
+	$(NRDIFF) xpredic.reslt $(NRANS)
+
+xprobks.reslt : xprobks.out
+	xprobks.out > xprobks.reslt && \
+	$(NRDIFF) xprobks.reslt $(NRANS)
+
+xpsdes.reslt : xpsdes.out
+	xpsdes.out > xpsdes.reslt && \
+	$(NRDIFF) xpsdes.reslt $(NRANS)
+
+xpzextr.reslt : xpzextr.out
+	xpzextr.out > xpzextr.reslt && \
+	$(NRDIFF) xpzextr.reslt $(NRANS)
+
+xqgaus.reslt : xqgaus.out
+	xqgaus.out > xqgaus.reslt && \
+	$(NRDIFF) xqgaus.reslt $(NRANS)
+
+xqrdcmp.reslt : xqrdcmp.resp xqrdcmp.out matrx1.dat
+	xqrdcmp.out < $< > xqrdcmp.reslt && \
+	$(NRDIFF) xqrdcmp.reslt $(NRANS)
+
+xqromb.reslt : xqromb.out
+	xqromb.out > xqromb.reslt && \
+	$(NRDIFF) xqromb.reslt $(NRANS)
+
+xqromo.reslt : xqromo.out
+	xqromo.out > xqromo.reslt && \
+	$(NRDIFF) xqromo.reslt $(NRANS)
+
+xqroot.reslt : xqroot.out
+	xqroot.out > xqroot.reslt && \
+	$(NRDIFF) xqroot.reslt $(NRANS)
+
+xqrsolv.reslt : xqrsolv.resp xqrsolv.out matrx1.dat
+	xqrsolv.out < $< > xqrsolv.reslt && \
+	$(NRDIFF) xqrsolv.reslt $(NRANS)
+
+xqrupdt.reslt : xqrupdt.resp xqrupdt.out matrx1.dat
+	xqrupdt.out < $< > xqrupdt.reslt && \
+	$(NRDIFF) xqrupdt.reslt $(NRANS)
+
+xqsimp.reslt : xqsimp.out
+	xqsimp.out > xqsimp.reslt && \
+	$(NRDIFF) xqsimp.reslt $(NRANS)
+
+xqtrap.reslt : xqtrap.out
+	xqtrap.out > xqtrap.reslt && \
+	$(NRDIFF) xqtrap.reslt $(NRANS)
+
+xquad3d.reslt : xquad3d.out
+	xquad3d.out > xquad3d.reslt && \
+	$(NRDIFF) xquad3d.reslt $(NRANS)
+
+xran.reslt : xran.out
+	xran.out > xran.reslt && \
+	$(NRDIFF) xran.reslt $(NRANS)
+
+xran4.reslt : xran4.out
+	xran4.out > xran4.reslt && \
+	$(NRDIFF) xran4.reslt $(NRANS)
+
+xrank.reslt : xrank.resp xrank.out tarray.dat
+	xrank.out < $< > xrank.reslt && \
+	$(NRDIFF) xrank.reslt $(NRANS)
+
+xratint.reslt : xratint.out
+	xratint.out > xratint.reslt && \
+	$(NRDIFF) xratint.reslt $(NRANS)
+
+xratlsq.reslt : xratlsq.resp xratlsq.out
+	xratlsq.out < $< > xratlsq.reslt && \
+	$(NRDIFF) xratlsq.reslt $(NRANS)
+
+xrc.reslt : xrc.out fncval.dat
+	xrc.out > xrc.reslt && \
+	$(NRDIFF) xrc.reslt $(NRANS)
+
+xrd.reslt : xrd.out fncval.dat
+	xrd.out > xrd.reslt && \
+	$(NRDIFF) xrd.reslt $(NRANS)
+
+xrealft.reslt : xrealft.resp xrealft.out
+	xrealft.out < $< > xrealft.reslt && \
+	$(NRDIFF) xrealft.reslt $(NRANS)
+
+xrf.reslt : xrf.out fncval.dat
+	xrf.out > xrf.reslt && \
+	$(NRDIFF) xrf.reslt $(NRANS)
+
+xrj.reslt : xrj.out fncval.dat
+	xrj.out > xrj.reslt && \
+	$(NRDIFF) xrj.reslt $(NRANS)
+
+xrk4.reslt : xrk4.out
+	xrk4.out > xrk4.reslt && \
+	$(NRDIFF) xrk4.reslt $(NRANS)
+
+xrkdumb.reslt : xrkdumb.out
+	xrkdumb.out > xrkdumb.reslt && \
+	$(NRDIFF) xrkdumb.reslt $(NRANS)
+
+xrkqs.reslt : xrkqs.out
+	xrkqs.out > xrkqs.reslt && \
+	$(NRDIFF) xrkqs.reslt $(NRANS)
+
+xrlft3.reslt : xrlft3.out
+	xrlft3.out > xrlft3.reslt && \
+	$(NRDIFF) xrlft3.reslt $(NRANS)
+
+xrofunc.reslt : xrofunc.out
+	xrofunc.out > xrofunc.reslt && \
+	$(NRDIFF) xrofunc.reslt $(NRANS)
+
+xrtbis.reslt : xrtbis.out
+	xrtbis.out > xrtbis.reslt && \
+	$(NRDIFF) xrtbis.reslt $(NRANS)
+
+xrtflsp.reslt : xrtflsp.out
+	xrtflsp.out > xrtflsp.reslt && \
+	$(NRDIFF) xrtflsp.reslt $(NRANS)
+
+xrtnewt.reslt : xrtnewt.out
+	xrtnewt.out > xrtnewt.reslt && \
+	$(NRDIFF) xrtnewt.reslt $(NRANS)
+
+xrtsafe.reslt : xrtsafe.out
+	xrtsafe.out > xrtsafe.reslt && \
+	$(NRDIFF) xrtsafe.reslt $(NRANS)
+
+xrtsec.reslt : xrtsec.out
+	xrtsec.out > xrtsec.reslt && \
+	$(NRDIFF) xrtsec.reslt $(NRANS)
+
+xrzextr.reslt : xrzextr.out
+	xrzextr.out > xrzextr.reslt && \
+	$(NRDIFF) xrzextr.reslt $(NRANS)
+
+xsavgol.reslt : xsavgol.out
+	xsavgol.out > xsavgol.reslt && \
+	$(NRDIFF) xsavgol.reslt $(NRANS)
+
+xscrsho.reslt : xscrsho.resp xscrsho.out
+	xscrsho.out < $< > xscrsho.reslt && \
+	$(NRDIFF) xscrsho.reslt $(NRANS)
+
+xselect.reslt : xselect.resp xselect.out tarray.dat
+	xselect.out < $< > xselect.reslt && \
+	$(NRDIFF) xselect.reslt $(NRANS)
+
+xselip.reslt : xselip.resp xselip.out tarray.dat
+	xselip.out < $< > xselip.reslt && \
+	$(NRDIFF) xselip.reslt $(NRANS)
+
+xshell.reslt : xshell.out tarray.dat
+	xshell.out > xshell.reslt && \
+	$(NRDIFF) xshell.reslt $(NRANS)
+
+xsimplx.reslt : xsimplx.out
+	xsimplx.out > xsimplx.reslt && \
+	$(NRDIFF) xsimplx.reslt $(NRANS)
+
+xsimpr.reslt : xsimpr.out
+	xsimpr.out > xsimpr.reslt && \
+	$(NRDIFF) xsimpr.reslt $(NRANS)
+
+xsinft.reslt : xsinft.resp xsinft.out
+	xsinft.out < $< > xsinft.reslt && \
+	$(NRDIFF) xsinft.reslt $(NRANS)
+
+xsncndn.reslt : xsncndn.out fncval.dat
+	xsncndn.out > xsncndn.reslt && \
+	$(NRDIFF) xsncndn.reslt $(NRANS)
+
+xsobseq.reslt : xsobseq.out
+	xsobseq.out > xsobseq.reslt && \
+	$(NRDIFF) xsobseq.reslt $(NRANS)
+
+xsor.reslt : xsor.out
+	xsor.out > xsor.reslt && \
+	$(NRDIFF) xsor.reslt $(NRANS)
+
+xsort.reslt : xsort.out tarray.dat
+	xsort.out > xsort.reslt && \
+	$(NRDIFF) xsort.reslt $(NRANS)
+
+xsort2.reslt : xsort2.resp xsort2.out tarray.dat
+	xsort2.out < $< > xsort2.reslt && \
+	$(NRDIFF) xsort2.reslt $(NRANS)
+
+xsort3.reslt : xsort3.out tarray.dat
+	xsort3.out > xsort3.reslt && \
+	$(NRDIFF) xsort3.reslt $(NRANS)
+
+xspctrm.reslt : xspctrm.out spctrl.dat
+	xspctrm.out > xspctrm.reslt && \
+	$(NRDIFF) xspctrm.reslt $(NRANS)
+
+xspear.reslt : xspear.out table2.dat
+	xspear.out > xspear.reslt && \
+	$(NRDIFF) xspear.reslt $(NRANS)
+
+xsphbes.reslt : xsphbes.out fncval.dat
+	xsphbes.out > xsphbes.reslt && \
+	$(NRDIFF) xsphbes.reslt $(NRANS)
+
+xsphfpt.reslt : xsphfpt.resp xsphfpt.out
+	xsphfpt.out < $< > xsphfpt.reslt && \
+	$(NRDIFF) xsphfpt.reslt $(NRANS)
+
+xsplie2.reslt : xsplie2.out
+	xsplie2.out > xsplie2.reslt && \
+	$(NRDIFF) xsplie2.reslt $(NRANS)
+
+xsplin2.reslt : xsplin2.out
+	xsplin2.out > xsplin2.reslt && \
+	$(NRDIFF) xsplin2.reslt $(NRANS)
+
+xspline.reslt : xspline.out
+	xspline.out > xspline.reslt && \
+	$(NRDIFF) xspline.reslt $(NRANS)
+
+xsplint.reslt : xsplint.resp xsplint.out
+	xsplint.out < $< > xsplint.reslt && \
+	$(NRDIFF) xsplint.reslt $(NRANS)
+
+xsprsax.reslt : xsprsax.out
+	xsprsax.out > xsprsax.reslt && \
+	$(NRDIFF) xsprsax.reslt $(NRANS)
+
+xsprsin.reslt : xsprsin.out
+	xsprsin.out > xsprsin.reslt && \
+	$(NRDIFF) xsprsin.reslt $(NRANS)
+
+xsprspm.reslt : xsprspm.out
+	xsprspm.out > xsprspm.reslt && \
+	$(NRDIFF) xsprspm.reslt $(NRANS)
+
+xsprstm.reslt : xsprstm.out
+	xsprstm.out > xsprstm.reslt && \
+	$(NRDIFF) xsprstm.reslt $(NRANS)
+
+xsprstp.reslt : xsprstp.out
+	xsprstp.out > xsprstp.reslt && \
+	$(NRDIFF) xsprstp.reslt $(NRANS)
+
+xsprstx.reslt : xsprstx.out
+	xsprstx.out > xsprstx.reslt && \
+	$(NRDIFF) xsprstx.reslt $(NRANS)
+
+xstifbs.reslt : xstifbs.resp xstifbs.out
+	xstifbs.out < $< > xstifbs.reslt && \
+	$(NRDIFF) xstifbs.reslt $(NRANS)
+
+xstiff.reslt : xstiff.resp xstiff.out
+	xstiff.out < $< > xstiff.reslt && \
+	$(NRDIFF) xstiff.reslt $(NRANS)
+
+xstoerm.reslt : xstoerm.out
+	xstoerm.out > xstoerm.reslt && \
+	$(NRDIFF) xstoerm.reslt $(NRANS)
+
+xsvbksb.reslt : xsvbksb.resp xsvbksb.out matrx1.dat
+	xsvbksb.out < $< > xsvbksb.reslt && \
+	$(NRDIFF) xsvbksb.reslt $(NRANS)
+
+xsvdcmp.reslt : xsvdcmp.resp xsvdcmp.out matrx3.dat
+	xsvdcmp.out < $< > xsvdcmp.reslt && \
+	$(NRDIFF) xsvdcmp.reslt $(NRANS)
+
+xsvdfit.reslt : xsvdfit.out
+	xsvdfit.out > xsvdfit.reslt && \
+	$(NRDIFF) xsvdfit.reslt $(NRANS)
+
+xsvdvar.reslt : xsvdvar.out
+	xsvdvar.out > xsvdvar.reslt && \
+	$(NRDIFF) xsvdvar.reslt $(NRANS)
+
+xtoeplz.reslt : xtoeplz.out
+	xtoeplz.out > xtoeplz.reslt && \
+	$(NRDIFF) xtoeplz.reslt $(NRANS)
+
+xtptest.reslt : xtptest.out
+	xtptest.out > xtptest.reslt && \
+	$(NRDIFF) xtptest.reslt $(NRANS)
+
+xtqli.reslt : xtqli.resp xtqli.out
+	xtqli.out < $< > xtqli.reslt && \
+	$(NRDIFF) xtqli.reslt $(NRANS)
+
+xtrapzd.reslt : xtrapzd.out
+	xtrapzd.out > xtrapzd.reslt && \
+	$(NRDIFF) xtrapzd.reslt $(NRANS)
+
+xtred2.reslt : xtred2.out
+	xtred2.out > xtred2.reslt && \
+	$(NRDIFF) xtred2.reslt $(NRANS)
+
+xtridag.reslt : xtridag.resp xtridag.out matrx2.dat
+	xtridag.out < $< > xtridag.reslt && \
+	$(NRDIFF) xtridag.reslt $(NRANS)
+
+xttest.reslt : xttest.out
+	xttest.out > xttest.reslt && \
+	$(NRDIFF) xttest.reslt $(NRANS)
+
+xtutest.reslt : xtutest.out
+	xtutest.out > xtutest.reslt && \
+	$(NRDIFF) xtutest.reslt $(NRANS)
+
+xtwofft.reslt : xtwofft.resp xtwofft.out
+	xtwofft.out < $< > xtwofft.reslt && \
+	$(NRDIFF) xtwofft.reslt $(NRANS)
+
+xvander.reslt : xvander.out
+	xvander.out > xvander.reslt && \
+	$(NRDIFF) xvander.reslt $(NRANS)
+
+xvegas.reslt : xvegas.resp xvegas.out
+	xvegas.out < $< > xvegas.reslt && \
+	$(NRDIFF) xvegas.reslt $(NRANS)
+
+xvoltra.reslt : xvoltra.out
+	xvoltra.out > xvoltra.reslt && \
+	$(NRDIFF) xvoltra.reslt $(NRANS)
+
+xwt1.reslt : xwt1.resp xwt1.out
+	xwt1.out < $< > xwt1.reslt && \
+	$(NRDIFF) xwt1.reslt $(NRANS)
+
+xwtn.reslt : xwtn.out
+	xwtn.out > xwtn.reslt && \
+	$(NRDIFF) xwtn.reslt $(NRANS)
+
+xzbrac.reslt : xzbrac.out
+	xzbrac.out > xzbrac.reslt && \
+	$(NRDIFF) xzbrac.reslt $(NRANS)
+
+xzbrak.reslt : xzbrak.out
+	xzbrak.out > xzbrak.reslt && \
+	$(NRDIFF) xzbrak.reslt $(NRANS)
+
+xzbrent.reslt : xzbrent.out
+	xzbrent.out > xzbrent.reslt && \
+	$(NRDIFF) xzbrent.reslt $(NRANS)
+
+xzrhqr.reslt : xzrhqr.out
+	xzrhqr.out > xzrhqr.reslt && \
+	$(NRDIFF) xzrhqr.reslt $(NRANS)
+
+xzriddr.reslt : xzriddr.out
+	xzriddr.out > xzriddr.reslt && \
+	$(NRDIFF) xzriddr.reslt $(NRANS)
+
+xzroots.reslt : xzroots.out
+	xzroots.out > xzroots.reslt && \
+	$(NRDIFF) xzroots.reslt $(NRANS)
+
+badluk.reslt : badluk.out
+	badluk.out > badluk.reslt && \
+	$(NRDIFF) badluk.reslt $(NRANS)
+
+fredex.reslt : fredex.out
+	fredex.out > fredex.reslt && \
+	$(NRDIFF) fredex.reslt $(NRANS)
+
+sfroid.reslt : sfroid.resp sfroid.out
+	sfroid.out < $< > sfroid.reslt && \
+	$(NRDIFF) sfroid.reslt $(NRANS)
+
+sphoot.reslt : sphoot.resp sphoot.out
+	sphoot.out < $< > sphoot.reslt && \
+	$(NRDIFF) sphoot.reslt $(NRANS)
+
+
+dates1.dat : $(NRROOT)/demo/data/dates1.dat
+	/bin/cp $< $@
+
+fncval.dat : $(NRROOT)/demo/data/fncval.dat
+	/bin/cp $< $@
+
+matrx1.dat : $(NRROOT)/demo/data/matrx1.dat
+	/bin/cp $< $@
+
+matrx2.dat : $(NRROOT)/demo/data/matrx2.dat
+	/bin/cp $< $@
+
+matrx3.dat : $(NRROOT)/demo/data/matrx3.dat
+	/bin/cp $< $@
+
+spctrl.dat : $(NRROOT)/demo/data/spctrl.dat
+	/bin/cp $< $@
+
+table1.dat : $(NRROOT)/demo/data/table1.dat
+	/bin/cp $< $@
+
+table2.dat : $(NRROOT)/demo/data/table2.dat
+	/bin/cp $< $@
+
+tarray.dat : $(NRROOT)/demo/data/tarray.dat
+	/bin/cp $< $@
+
+text.dat : $(NRROOT)/demo/data/text.dat
+	/bin/cp $< $@
+
+
+# Target for recipes library
+lib:	addint.o airy.o amebsa.o amoeba.o amotry.o amotsa.o anneal.o \
+	anorm2.o arcmak.o arcode.o arcsum.o asolve.o atimes.o avevar.o \
+	balanc.o banbks.o bandec.o banmul.o bcucof.o bcuint.o beschb.o \
+	bessi.o bessi0.o bessi1.o bessik.o bessj.o bessj0.o bessj1.o \
+	bessjy.o bessk.o bessk0.o bessk1.o bessy.o bessy0.o bessy1.o \
+	beta.o betacf.o betai.o bico.o bksub.o bnldev.o brent.o broydn.o \
+	bsstep.o caldat.o chder.o chebev.o chebft.o chebpc.o chint.o \
+	chixy.o choldc.o cholsl.o chsone.o chstwo.o cisi.o complex.o cntab1.o \
+	cntab2.o convlv.o copy.o correl.o cosft1.o cosft2.o covsrt.o \
+	crank.o cyclic.o daub4.o dawson.o dbrent.o ddpoly.o decchk.o \
+	df1dim.o dfour1.o dfpmin.o dfridr.o dftcor.o dftint.o difeq.o \
+	dlinmin.o dpythag.o drealft.o dsprsax.o dsprstx.o dsvbksb.o \
+	dsvdcmp.o eclass.o eclazz.o ei.o eigsrt.o elle.o ellf.o ellpi.o \
+	elmhes.o erfcc.o erff.o erffc.o eulsum.o evlmem.o expdev.o \
+	expint.o f1dim.o factln.o factrl.o fasper.o fdjac.o fgauss.o \
+	fill0.o fit.o fitexy.o fixrts.o fleg.o flmoon.o fmin.o four1.o \
+	fourew.o fourfs.o fourn.o fpoly.o fred2.o fredin.o frenel.o \
+	frprmn.o ftest.o gamdev.o gammln.o gammp.o gammq.o gasdev.o \
+	gaucof.o gauher.o gaujac.o gaulag.o gauleg.o gaussj.o gcf.o \
+	golden.o gser.o hpsel.o hpsort.o hqr.o hufapp.o hufdec.o \
+	hufenc.o hufmak.o hunt.o hypdrv.o hypgeo.o hypser.o icrc.o \
+	icrc1.o igray.o iindexx.o indexx.o interp.o irbit1.o irbit2.o \
+	jacobi.o jacobn.o julday.o kendl1.o kendl2.o kermom.o ks2d1s.o \
+	ks2d2s.o ksone.o kstwo.o laguer.o lfit.o linbcg.o linmin.o \
+	lnsrch.o locate.o lop.o lubksb.o ludcmp.o machar.o matadd.o \
+	matsub.o medfit.o memcof.o metrop.o mgfas.o mglin.o midexp.o \
+	midinf.o midpnt.o midsql.o midsqu.o miser.o mmid.o mnbrak.o \
+	mnewt.o moment.o mp2dfr.o mpdiv.o mpinv.o mpmul.o mpops.o mppi.o \
+	mprove.o mpsqrt.o mrqcof.o mrqmin.o newt.o nrutil.o odeint.o orthog.o \
+	pade.o pccheb.o pcshft.o pearsn.o period.o piksr2.o piksrt.o \
+	pinvs.o plgndr.o poidev.o polcoe.o polcof.o poldiv.o polin2.o \
+	polint.o powell.o predic.o probks.o psdes.o pwt.o pwtset.o \
+	pythag.o pzextr.o qgaus.o qrdcmp.o qromb.o qromo.o qroot.o \
+	qrsolv.o qrupdt.o qsimp.o qtrap.o quad3d.o quadct.o quadmx.o \
+	quadvl.o ran0.o ran1.o ran2.o ran3.o ran4.o rank.o ranpt.o \
+	ratint.o ratlsq.o ratval.o rc.o rd.o realft.o rebin.o red.o \
+	relax.o relax2.o resid.o revcst.o reverse.o rf.o rj.o rk4.o \
+	rkck.o rkdumb.o rkqs.o rlft3.o rofunc.o rotate.o rsolv.o \
+	rstrct.o rtbis.o rtflsp.o rtnewt.o rtsafe.o rtsec.o rzextr.o \
+	savgol.o scrsho.o select.o selip.o shell.o shoot.o shootf.o \
+	simp1.o simp2.o simp3.o simplx.o simpr.o sinft.o slvsm2.o \
+	slvsml.o sncndn.o snrm.o sobseq.o solvde.o sor.o sort.o sort2.o \
+	sort3.o spctrm.o spear.o sphbes.o splie2.o splin2.o spline.o \
+	splint.o spread.o sprsax.o sprsin.o sprspm.o sprstm.o sprstp.o \
+	sprstx.o stifbs.o stiff.o stoerm.o svbksb.o svdcmp.o svdfit.o \
+	svdvar.o toeplz.o tptest.o tqli.o trapzd.o tred2.o tridag.o \
+	trncst.o trnspt.o ttest.o tutest.o twofft.o vander.o vegas.o \
+	voltra.o wt1.o wtn.o wwghts.o zbrac.o zbrak.o zbrent.o zrhqr.o \
+	zriddr.o zroots.o
+	$(AR) rv librecipes_c-$(NRTYPE).a $^
+# ranlib not done because it is obsolete
+
+
+clean : ;
+	/bin/rm *.o *.out

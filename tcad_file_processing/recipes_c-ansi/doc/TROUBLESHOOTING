@@ -1,0 +1,49 @@
+	In general, the first action to take when investigating a
+suspect bug is to turn off all optimization switches that have been used
+in compiling. Many compilers have optimizer bugs. If there is another
+compiler installed on your system, getting a "second opinion" by using
+it can often help distinguish algorithm bugs from compiler problems.
+	Note there is a routine named "select" in the Numerical Recipes
+library. This has a name identical to that of the select(2) system
+call. It is hoped that the applications which use these different
+functions are sufficiently disjoint so that no program would want to use
+both of them. If such conflict does occur, renaming the Numerical
+Recipes routine should solve the problem.
+
+	Some common difficulties, with possible solutions, are listed
+below:
+
+	Symptom: Error message when compiling, similar to:
+./include/nr.h:430: conflicting types for `select'
+[<system path>]/sys/select.h:165: previous declaration of `select'
+	Action: The system header files have more information than was
+assumed, leading to a conflict between the system function select() and
+the Numerical Recipes function of the same name. Try adding the option
+-D_ANSI_C_SOURCE to the compile flags (this may be necessary even for
+the K&R version, so examine the test results carefully). If that option
+doesn't fix the problem, it may be necessary to rename all refences to
+the Numerical Recipes select() function.
+
+	Symptom: Everything runs to completion, except for xdfpmin.c,
+xhypgeo.c, xlaguer.c, which abort.
+	Action: Check for having compiled the recipes themselves
+with one compiler, and the demo programs with another. This may have
+come about from errors when editing the individual makefiles.
+
+	Symptom: Almost everything works except for: xcisi.c, xfixrts.c,
+xfrenel.c, xhypgeo.c, xlaguer.c, xpredic.c, xzroots.c
+	Action: Your compiler has a problem with passing the
+structures used for the Numerical Recipes type fcomplex. If you're
+making the ANSI version, try the K&R version instead. If that doesn't
+work, get a better compiler. 
+
+	Symptom: xpsdes doesn't work.
+	Action: Check if the type long has a length of 32 bits. This
+will not be the case on certain large machines. Change the type in the
+code to one that is exactly 32 bits.
+
+	Symptom: xran4 doesn't work.
+	Action: Look into the details of the floating-point format of
+your machine. If it is not VAX or IEEE standard, you will have to find
+the appropriate constants for the code, as explained in the text. Note
+if psdes doesn't work, ran4 won't work.

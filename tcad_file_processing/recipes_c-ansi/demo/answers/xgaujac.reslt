@@ -1,0 +1,26 @@
+Enter N
+  #       x(i)           w(i)
+  1   7.071068e-01   1.570796e+00
+  2  -7.071068e-01   1.570796e+00
+
+Check value:   0.0000000e+00  should be:   0.0000000e+00
+
+Check value:   3.1415925e+00  should be:   3.1415925e+00
+
+Integral from gaujac:     3.371452
+Actual value:             3.371500
+Enter N
+  #       x(i)           w(i)
+  1   9.510565e-01   6.283184e-01
+  2   5.877852e-01   6.283184e-01
+  3   0.000000e+00   6.283184e-01
+  4  -5.877852e-01   6.283184e-01
+  5  -9.510565e-01   6.283184e-01
+
+Check value:  -5.9604645e-08  should be:   0.0000000e+00
+
+Check value:   3.1415920e+00  should be:   3.1415925e+00
+
+Integral from gaujac:     3.371500
+Actual value:             3.371500
+Enter N

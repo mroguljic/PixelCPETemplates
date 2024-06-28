@@ -1,0 +1,5 @@
+IDUM=
+ENTER N,NDIM,XOFF,DITH,NTRIES
+Fractional error: actual,indicated=     0.015751    0.022333
+ENTER N,NDIM,XOFF,DITH,NTRIES
+Normal completion

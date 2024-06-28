@@ -1,0 +1,14 @@
+
+successful steps:                 6
+bad steps:                        0
+function evaluations:           160
+
+stored intermediate values:       6
+
+       x           integral      bessj(3,x)
+    1.0000         0.019563       0.019563
+    1.7133         0.086908       0.086908
+    3.0408         0.316218       0.316226
+    5.2591         0.313788       0.313787
+    8.1517        -0.288833      -0.288844
+   10.0000         0.058393       0.058379

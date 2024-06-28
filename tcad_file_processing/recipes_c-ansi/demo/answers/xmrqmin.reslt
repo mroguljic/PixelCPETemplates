@@ -1,0 +1,66 @@
+
+Iteration #  1      chi-squared: 17728.6484    alamda:  1.00e-04
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   4.7152   1.9326   3.0161   2.1725   4.8002   3.0640
+
+Iteration #  2      chi-squared:   187.4699    alamda:  1.00e-05
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   4.8586   1.9395   2.9606   2.1702   4.8807   3.0340
+
+Iteration #  3      chi-squared:   184.0533    alamda:  1.00e-06
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   5.0045   1.9985   3.0012   1.9988   4.9987   3.0004
+
+Iteration #  4      chi-squared:   107.8488    alamda:  1.00e-07
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   5.0387   2.0154   3.0122   1.9512   5.0352   2.9905
+
+Iteration #  5      chi-squared:   107.1692    alamda:  1.00e-08
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   5.0393   2.0159   3.0126   1.9500   5.0362   2.9902
+
+Iteration #  6      chi-squared:   107.1690    alamda:  1.00e-09
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   5.0394   2.0159   3.0126   1.9500   5.0362   2.9902
+
+Iteration #  7      chi-squared:   107.1690    alamda:  1.00e-08
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   5.0394   2.0159   3.0126   1.9500   5.0362   2.9902
+
+Iteration #  8      chi-squared:   107.1690    alamda:  1.00e-07
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   5.0394   2.0159   3.0126   1.9500   5.0362   2.9902
+
+Uncertainties:
+   0.0285   0.0124   0.0083   0.0357   0.0264   0.0075
+
+Expected results:
+    5.00     2.00     3.00     2.00     5.00     3.00
+press return to continue with constraint
+holding a[2] and a[5] constant
+
+Iteration #  1      chi-squared:  1799.0133    alamda:  1.00e-04
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   4.9957   2.0000   3.0086   1.9931   5.0000   3.0086
+
+Iteration #  2      chi-squared:   110.7132    alamda:  1.00e-05
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   4.9999   2.0000   3.0030   1.9965   5.0000   3.0011
+
+Iteration #  3      chi-squared:   110.7085    alamda:  1.00e-06
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   4.9999   2.0000   3.0029   1.9965   5.0000   3.0011
+
+Iteration #  4      chi-squared:   110.7065    alamda:  1.00e-07
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   4.9999   2.0000   3.0029   1.9965   5.0000   3.0011
+
+Iteration #  5      chi-squared:   110.7065    alamda:  1.00e-06
+    a[1]     a[2]     a[3]     a[4]     a[5]     a[6]
+   4.9999   2.0000   3.0029   1.9965   5.0000   3.0011
+
+Uncertainties:
+   0.0010   0.0000   0.0018   0.0019   0.0000   0.0005
+
+Expected results:
+    5.00     2.00     3.00     2.00     5.00     3.00

@@ -1,0 +1,156 @@
+             Numerical Recipes - Compiler Tips and Troubles
+
+	The following is a collection of hints, possible compiler
+problems, and recommendations that have been gathered over time.
+Compilers and operating systems often have many different versions and
+flavors, so the information below is not meant as definitive. It is only
+intended as a guideline and warning of potential hazards. Your local
+experts should be the first people consulted regarding problems you
+experience with Numerical Recipes.
+	
+	Most C compilers have a "-O" option that instructs it to use
+various optimizations. These are intended to produce faster code, but
+sometimes produce bugs. There is often a "-g" option to produce
+information (a symbol table) that is helpful in debugging. But be aware
+that using this option makes the code much larger, and can make it slower.
+
+	Memory management is mostly confined to the file nrutil.c, with
+the exceptions of arcode.c and hufenc.c (these two call realloc()).
+System specific modifications (such as #include files) may have to be
+made in these.
+
+	In the creation of the library (.a) files, the following
+warnings may occur.
+ar: Warning:ignoring second definition of ncom defined in archive
+ar: Warning:ignoring second definition of pcom defined in archive
+ar: Warning:ignoring second definition of xicom defined in archive
+	Ignore these messages - the cause is benign.
+
+	Many systems nowadays do not have a "ranlib" program. Where
+"ranlib" was previously used in makefiles, the command "ar -ts" has
+replaced it. This may need to be changed to "ar ts" on some systems.
+
+	The Numerical Recipes C distribution includes both K&R and ANSI
+versions. In order to allow you fine control over the compiling
+process, the master makefile has macros for CCANSI, CCKR, CFLAGSANSI
+and CFLAGSKR. These set the common make macros CC and CFLAGS in
+subsidiary makefiles.
+
+	Alternate compilers: The Free Software Foundation produces the
+GNU C compiler (gcc). This is a freely-redistributable ANSI C compiler
+than runs on many, many machines, sometimes with better performance and
+fewer bugs than the manufacture's compiler. If it's installed on your
+machine, use the setting CCANSI = gcc to call it. If you want to have it
+compile the K&R version, put CCKR = gcc, and make sure you have
+"-traditional" in CFLAGSKR. There are many optimization options for
+gcc, such as "-fstrength-reduce", "-fcombine-regs", "-fforce-mem",
+"-fforce-addr". See the gcc manual if you want to pick and choose. If
+you will be linking with non-gcc compiled code, you will also want
+"-fpcc-struct-return".
+
+	In general, if you trust your compiler to optimize correctly,
+use the option "-O". If you want a symbol table for debugging, use "-g".
+Note "-g" overrides "-O" on all compilers except gcc.
+
+EXAMPLES:
+
+CCANSI = gcc
+CFLAGSANSI = -O -fpcc-struct-return
+# Compile optimized ANSI distribution with gcc, set up to be linked with
+# code compiled with cc
+
+CCKR = gcc
+CFLAGSKR = -traditional -g
+# Compile K&R distribution, no optimization, symbol table for debugging
+
+	Not all systems are treated with equal depth, because of limited
+resources. Any information contributed by users will be greatly
+appreciated.
+
+OSF and SYSV select() problem:
+	Some versions of these operating systems have a problem in that
+the system include files contain more information than is expected. This
+leads to a conflict between the declarations for the system version of
+select() and the Numerical Recipes function of the same name. One simple
+solution is to add the option -D_ANSI_C_SOURCE to the compile flags
+(this may have to be done even for the K&R version, so pay close
+attention to the test results). This option may suppress the additional
+information in the include files, thus fixing the problem.
+	A file consisting only of the following two lines will suffice to
+test for the problem:
+
+#include <math.h>
+float select();
+
+
+Sun:
+	If you *really* trust the Sun C compiler optimization, have
+"-O4" as an optimization option. Note under SunOs 4.1.1 (and possibly
+other versions) the following routines can handle a level of only "-O2":
+fixrts.c, laguer.c, xfixrts.c, xzroots.c, zroots.c
+
+	Depending on your machine, some possible setting are:
+
+CFLAGSANSI = -O4 /usr/lib/libm.il
+# inline code template --- Sparc or Sun 3 w/o math-coprocessor
+CFLAGSANSI = -f68881 -O4 /usr/lib/f68881/libm.il
+# inline code template --- Sun 3 w/MC68881 math co-processor
+CFLAGSANSI = -ffpa -O4 /usr/lib/fpa/libm.il
+# inline code template --- Sun 3 w/fpa math co-processor
+
+RS6000 - AIX:
+	Release 3.1:
+		The standard compiler is quite buggy. Be particularly
+		wary of the fscanf and printf functions. Use an alternate
+ 		compiler (eg. gcc) if at all possible.
+
+	Release 3.2:
+		The bugs noted in version 3.1 seem to be fixed.
+		For the ANSI C version, use CCANSI = xlc if using the
+		native compiler
+
+DEC ALPHA:
+	The ALPHA is a 64-bit machine, so the version misc/psdes64.c
+should be used instead of the standard one. Alternatively, the types in
+psdes.c can be changed (to "int"), but then nr.h should also be edited.
+
+DECstation - Ultrix:
+	There is a bug in the system 'cc' compiler, which will show up
+	in xflmoon. A simpler version can be demonstrated in the
+	following small program:
+			#include <stdio.h>
+			main() {
+			        int n = 10;
+		        	n = n + ((int) (-0.99));
+			        printf("%d\n",n);
+			        n = 10;
+			        n += ((int) (-0.99));
+		        	printf("%d\n",n);
+			}
+	This will produce output of 10 and 9, instead of the expected 10 10.
+
+Vax - BSD:
+	The system 'cc' compiler has a bug which causes it to generate
+incorrect code in some cases involving variables with 'unsigned' as part
+of their types. If you see garbage in the output of xspear, try removing
+the 'unsigned' from the "j=1,ji,jt" line of crank.c. If 'xfasper' fails
+with a floating-point exception, remove the 'unsigned' from the
+declaration in xfasper.c .
+
+IBM PC-RT:
+	If you have a problem with the results of xmgfas, using hc, try
+	recoding the line in lop.c:
+	out[i][1]=out[i][n]=out[1][i]=out[n][i]=0.0;
+	to
+	out[i][1]=0.0; out[i][n]=0.0; out[1][i]=0.0; out[n][i]=0.0;
+
+NeXT:
+	Use 'ranlib' instead of 'ar' in the master makefile.
+	In ANSI recipes/makefile, all /usr/include paths need to be
+changed to /usr/include/ansi
+	One user reports:
+        - in the demo/bin/makefile, i had to simplify the OUTRULE a 
+        little by taking out the '$?' in OUTRULE and adding another 
+        var i called SRCPATH that points directly at where the .c
+        file is, and changed each rule so that : xxx.c became
+        : $(SRCPATH)xxx.c

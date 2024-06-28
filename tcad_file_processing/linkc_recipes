@@ -1,0 +1,2 @@
+/usr/bin/cc -O -I/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/include -I/usr/local/include $1.c -L/Library/Developer/CommandLineTools/SDKs/MacOSX12.3.sdk/usr/lib -L/usr/local/lib -lrecipes_c -lm -o $1
+

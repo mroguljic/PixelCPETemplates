@@ -1,0 +1,16 @@
+INPUT X,Y OF COMPLEX ARGUMENT:
+2F1(0.5,1.0,1.5;z^2) =    0.927295     0.000000
+check using log form:     0.927295     0.000000
+2F1(0.5,1.0,1.5;-z^2)=    1.098613     0.000000
+check using log form:     1.098612     0.000000
+INPUT X,Y OF COMPLEX ARGUMENT:
+2F1(0.5,1.0,1.5;z^2) =    0.955934     0.151215
+check using log form:     0.955934     0.151215
+2F1(0.5,1.0,1.5;-z^2)=    0.955934    -0.151215
+check using log form:     0.955934    -0.151215
+INPUT X,Y OF COMPLEX ARGUMENT:
+2F1(0.5,1.0,1.5;z^2) =    0.040609     0.314143
+check using log form:     0.040609     0.314143
+2F1(0.5,1.0,1.5;-z^2)=    0.274679    -0.000047
+check using log form:     0.274680    -0.000047
+INPUT X,Y OF COMPLEX ARGUMENT:

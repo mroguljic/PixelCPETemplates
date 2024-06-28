@@ -1,0 +1,19 @@
+  Omega  Integral cosine*test func  Err    Integral sine*test func   Err
+input c,d:
+input a,b:
+input w:
+   0.000000e+00   -9.207306e-01    8.821487e-06    0.000000e+00    0.000000e+00
+input w:
+   1.900000e+00    8.000377e-01   -7.987022e-06   -2.268356e+00    2.360344e-05
+input w:
+   2.100000e+00    1.765125e+00   -1.859665e-05   -1.512976e+00    1.609325e-05
+input w:
+input a,b:
+input w:
+   5.000000e-01   -1.265084e-02    1.071021e-07   -2.320600e-03    1.273584e-07
+input w:
+   6.000000e-01   -1.255787e-02    1.164153e-07   -2.777850e-03    1.087319e-07
+input w:
+input a,b:
+input c,d:
+normal completion

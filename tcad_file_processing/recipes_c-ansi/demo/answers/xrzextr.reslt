@@ -1,0 +1,42 @@
+
+iest =   1     xest =   1.0000
+Extrap. function:     0.500000    0.250000    0.125000    0.062500
+Estimated error:      0.500000    0.250000    0.125000    0.062500
+
+iest =   2     xest =   0.5000
+Extrap. function:     0.357143    0.312500    0.357143    4.999979
+Estimated error:     -0.059524    0.034722    0.171958    4.876522
+
+iest =   3     xest =   0.3333
+Extrap. function:     0.511905    0.205128   -0.075843   -0.192780
+Estimated error:     -0.619048   -2.433766    1.363550    0.174015
+
+iest =   4     xest =   0.2500
+Extrap. function:     1.210132    1.501278    3.632099   -1.063629
+Estimated error:     -0.031095    0.174729    2.052446   -3.471820
+
+iest =   5     xest =   0.2000
+Extrap. function:     0.999101    1.000294    0.999902    0.986363
+Estimated error:     -0.139414    0.438601    0.200002    0.190392
+
+iest =   6     xest =   0.1667
+Extrap. function:     0.999906    1.000037    1.000002    1.000019
+Estimated error:      0.000134   -0.000043    0.000017    0.002411
+
+iest =   7     xest =   0.1429
+Extrap. function:     0.999975    0.999993    0.999976    0.999955
+Estimated error:      0.000014   -0.000011    0.000003   -0.000009
+
+iest =   8     xest =   0.1250
+Extrap. function:     1.000200    1.000004    0.999991    0.999996
+Estimated error:      0.000160    0.000000    0.000007   -0.000043
+
+iest =   9     xest =   0.1111
+Extrap. function:     0.999996    0.999992    0.999992    1.000020
+Estimated error:      0.000007   -0.000012    0.000000    0.000001
+
+iest =  10     xest =   0.1000
+Extrap. function:     1.000046    1.000000    0.999990    1.000025
+Estimated error:      0.000023    0.000000    0.000008    0.000002
+
+Actual values:        1.000000    1.000000    1.000000    1.000000 
