@@ -32,4 +32,4 @@ Dot1_150x100_dj0305d@-475V,3.8T@90d,263K,rh=1.02/0.7,2.5/2.5,100Vdep
 * Third line: Magnetic field in tesla
 * Fourth line: thickness of silicon, local x length, local y length, temperature in K, radiation exposures in units of neq 10^14 for electrons and holes (scale factors for trapping rates), hall factors for electrons and  holes, collected charge type (0=electrons, 1=holes), model for electron energy loss (we only use 1, it is from NIST), dimensions of E field array (we input it in previous step)
 * Save it as pixel2.init file
-* Simulate new clusters new pixel2.init file
+* Run Pixelav simulation with new pixel2.init file
