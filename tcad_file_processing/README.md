@@ -36,13 +36,13 @@ Dot1_150x100_dj0305d@-475V,3.8T@90d,263K,rh=1.02/0.7,2.5/2.5,100Vdep
 
 ## Running TCAD
 * Start from one of the folders that were used in previous TCAD simulations
-* Adjust the simulation parameters in files ...
-* Run `dessys`
+* Simulation parameters are in files msh.grd, msh.dat and _des.cmd. _des.cmd is usually the one to modify, mostly the concentrations of two types of carrier traps.
+* Run `dessys test_diode_dj0305d` #`test_diode_dj0305d` is the name of the folder containing details about TCAD simulation and it needs to be run from that folder
 * Move the output folder to tcad_file_processing
 
 If using a simple test_diode model (for quick tunning of the model)
 ```
-./gen_efield test_diode_dj0305d 475
+./gen_efield test_diode_dj0305d 475 #475 V here would corresopnd to 450 V at CMS. It has been found that the 25 V offset w.r.t CMS offers better agreement than matching voltages
 10 10 92
 append field .out to the plotting “ef_comp2024…”
 tdr.py ef_comp2024...
