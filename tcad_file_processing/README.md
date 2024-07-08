@@ -18,7 +18,7 @@ The generation of the E field is done using a TCAD output folder, named `dot1_15
 500 #Input 2
 ```
 
-The two outputs are `eplot.out` and `efield.out`. The former is used for plotting and the latter for simulation. Here we add four lines to the efield file:
+The two outputs are `eplot.out` and `efield.out`. The former can be used for plotting by appending it to `ef_comp2024...` file to use with `tdr.py` in the `LA_trees_processing` module. The latter is used for simulation. Here we add four lines to the efield file:
 
 ```
 Dot1_150x100_dj0305d@-475V,3.8T@90d,263K,rh=1.02/0.7,2.5/2.5,100Vdep
@@ -33,3 +33,18 @@ Dot1_150x100_dj0305d@-475V,3.8T@90d,263K,rh=1.02/0.7,2.5/2.5,100Vdep
 * Fourth line: thickness of silicon, local x length, local y length, temperature in K, radiation exposures in units of neq 10^14 for electrons and holes (scale factors for trapping rates), hall factors for electrons and  holes, collected charge type (0=electrons, 1=holes), model for electron energy loss (we only use 1, it is from NIST), dimensions of E field array (we input it in previous step)
 * Save it as pixel2.init file
 * Run Pixelav simulation with new pixel2.init file
+
+## Running TCAD
+* Start from one of the folders that were used in previous TCAD simulations
+* Adjust the simulation parameters in files ...
+* Run `dessys`
+* Move the output folder to tcad_file_processing
+
+If using a simple test_diode model (for quick tunning of the model)
+```
+./gen_efield test_diode_dj0305d 475
+10 10 92
+append field .out to the plotting “ef_comp2024…”
+tdr.py ef_comp2024...
+```
+The output plot can be checked to see if the model looks ok or if it warrants tuning before the full simulation is ran.
