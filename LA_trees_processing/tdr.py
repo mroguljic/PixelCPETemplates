@@ -94,6 +94,6 @@ for i in range(nsets):
 # label the plot
 plt.ylim(bottom=0)
 plt.legend()
-outfile = sys.argv[1] + '.pdf'
+outfile = 'data_mc_plots/'+sys.argv[1] + '.pdf'
 plt.savefig(outfile)
 plt.show()

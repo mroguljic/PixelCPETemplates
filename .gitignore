@@ -1,4 +1,8 @@
+.vscode
+LA_trees_processing/test_q_dist_pt_bpix21_2t
+LA_trees_processing/test_standard_pt_bpix21_2t
 LA_trees_processing/Efield_output/*
+LA_trees_processing/data_mc_plots/*
 LA_trees_processing/LorentzTrees/*
 LA_trees_processing/LA_from_Ntpl_output/*
 LA_trees_processing/templates_dir/*
@@ -10,3 +14,4 @@ LA_calibration_trees*
 calculateEfieldFromNtpl_template_2024b_prob
 pixelav_simulation/batch/*out
 pixelav_simulation/scrtmp/*
+tpl-env
