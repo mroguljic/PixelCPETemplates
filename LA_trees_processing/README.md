@@ -28,3 +28,13 @@ The contents of `c_lorenzFit.txt` files should be copied to a file for plotting,
 * Files with E fields based on simulated clusters are stored in `LA_from_Ntpl_output` while those calculated directly from data (Lorentz trees) are stored in `Efield_output`
 * The first line in simulated_clusters .out file contains information about layer and E field model used in simulation.
 * Model naming and tunes are kept in the `pixelav_lor_calibrations.txt` file
+
+## Comparing simulated and measured clusters
+* Edit the first line in `q_dist_2t.txt` to point to the input file with clusters. If this was done in the step of "generating and processing Lorentz trees from PixelAV simulation", it might already be correct
+* Compile the two scripts for creating histograms:
+    *  ./linkrootc++ test_q_dist_pt_bpix21_2t
+    *  ./linkrootc++ test_standard_pt_bpix21_2t
+*  `./test_standard_pt_bpix21_2t` asks for input. We can do: `0. 0. 0. 1109 1 2 0 0` for example
+*  `./test_q_dist_pt_bpix21_2t` also asks for input. We can do: `0. 4 0. 1109 1 2 0 0` for example
+* We look at the two pdfs and see if the agreement is acceptable. We proceed with simulating the clusters required for template production or work on tweaking the TCAD model
+
