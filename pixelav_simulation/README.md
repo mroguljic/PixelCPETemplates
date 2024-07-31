@@ -20,5 +20,5 @@ gunzip template*
 cat template_events_d285??.out > template_events_d28721.out 
 ```
 
-## Pixelav simulation for template productio
+## Pixelav simulation for template production
 Here we simulate tracks at predefined angles (expressed as a grid of track sizes when projected to two local axes of the sensor). The procedure is the same as above except that we use an additional file, `runlist.init`, containing the grid of angles. The corresponding submission file is `smake_template_2f_bpix2.pbs`
