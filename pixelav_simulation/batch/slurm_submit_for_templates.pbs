@@ -1,0 +1,24 @@
+#!/bin/bash -l
+#SBATCH --job-name=template_generation 
+#SBATCH --time=24:00:00
+#SBATCH --array=1-205
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1 
+#SBATCH --partition=shared
+#SBATCH --mail-type=end
+#SBATCH --mail-user=mrogulj1@jhu.edu
+#
+# cd /tmp
+cd /home/ext-mrogulj1/CPE_templates/scrtmp
+mkdir "TEMPLATE_$SLURM_JOBID"
+cd "TEMPLATE_$SLURM_JOBID"
+cp /home/ext-mrogulj1/CPE_templates/pixelav/SIRUTH.SPR .
+cp /home/ext-mrogulj1/CPE_templates/templates_bpix/pixel2.init .
+cp /home/ext-mrogulj1/CPE_templates/templates_bpix/wgt_pot.init .
+cp /home/ext-mrogulj1/CPE_templates/templates_bpix/runlist.init .
+/home/ext-mrogulj1/CPE_templates/pixelav/pixelav2_templates_xy_runlist_2f $SLURM_ARRAY_TASK_ID
+gzip template_events_d*.out
+cp template_events_d*.out.gz /home/ext-mrogulj1/CPE_templates/finished/
+cp seedfile* /home/ext-mrogulj1/CPE_templates/finished/
+cd ..
+rm -r "TEMPLATE_$SLURM_JOBID"
