@@ -6,3 +6,6 @@
    - Processing of TCAD simulation is described in `tcad_file_processing`
    - We can run a "test_diode" run which is quick nad offers general insight into the E field. The field can be plotted directly using the output of TCAD, without doing pixelav simulation
    - Once we have a good agreement with the quick simulation, we can run TCAD + pixelav for full simulation
+5. Simulate clusters with a wide range of angles for producing templates
+   - We run the "Pixelav simulation for template production" part in  the `pixelav_simulation` module
+   - Have to make sure the pixel2.init (e field) is the one we obtained for the desired model in the `tcad_file_processing` module
