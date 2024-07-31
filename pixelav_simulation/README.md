@@ -1,4 +1,4 @@
-## Pixelav simulation of clusters
+## Pixelav simulation of clusters based on LA trees
 
 The goal of this module is to take tracks, obtained from Lorentz angle trees, and simulate corresponding clusters using PixelAv. Besides the tracks, a required input is the electric field of the sensor that is obtained using TCAD simulations.
 
@@ -19,3 +19,6 @@ gunzip template*
 # For easier bookkeeping, add layer + CMS run number to the end of the first line of first file. For example: L1U 380947 
 cat template_events_d285??.out > template_events_d28721.out 
 ```
+
+## Pixelav simulation for template productio
+Here we simulate tracks at predefined angles (expressed as a grid of track sizes when projected to two local axes of the sensor). The procedure is the same as above except that we use an additional file, `runlist.init`, containing the grid of angles. The corresponding submission file is `smake_template_2f_bpix2.pbs`
