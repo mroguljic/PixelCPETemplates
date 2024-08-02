@@ -1,35 +1,20 @@
 # Pixel Template Production
-Code for production of pixel templates for CMS
+Code for production of pixel templates for CMS, adapted from: https://github.com/OzAmram/PixelTemplateProduction
 
 ## Compiling
 
-Everything is run standalone from the cmssw environment but makes use of some of the code in
-it. 
+Everything is run independent from the cmssw environment but makes use of some of the code in it. Current versions of cmssw no longer support the standalone pixel template code so we store the compatible version in `cmssw_code`
 
 
-Run the script **fetch\_cmssw\_code.sh** grabs the latest version of all the needed pixel code from the [cmssw github](https://github.com/cms-sw/cmssw).
+The script **fetch\_cmssw\_code.sh** grabs the latest version of all the needed pixel code from the [cmssw github](https://github.com/cms-sw/cmssw).
 If you want to grab from a branch other than the cmssw master (eg to test some
-changes), you can change the `branch` variable in the script to point to a different branch.
+changes), you can change the `branch` variable in the script to point to a different branch. **Current cmssw version cannot be run standalone so if you do this, the code will not compile**
 
-The code shared with CMSSW uses the [vdt](https://github.com/dpiparo/vdt) library so you must have it installed.
-For instructions to install vdt see [their github](https://github.com/dpiparo/vdt).
-The Makefile assumes it installed to /usr/local/, if it is installed to some
-other location, change the `vdt_dir` variable in the Makefile to point to the correct location. 
-
-All of the source code is in the src/ directory which contains a Makefile. So you should be able to compile by simply changing to the src/ directory and running `make`. All the compiled executables are put in the bin/ directory. 
-
-
-Note that this can be compiled and run from within a CMSSW release by linking to
-the compiled vdt and BOOST used in CMSSW. Eg on lxplus:
-
-> vdt_dir=/cvmfs/cms.cern.ch/slc7_amd64_gcc820/cms/vdt/0.4.0-nmpfii/include
-> includes= -I. -I../cmssw_code/ -I$(vdt_dir) -I/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/boost/1.67.0-pafccj/include
-
-
-
-
+The code shared with CMSSW uses the boost libraries. Change the include path in `src/Makefile` to match your `boostlib` include folder
 
 ## Making Templates
+
+**This needs to be updated following Morris' tutorial**
 
 There are two simple bash scripts that run the necessary executables to make templates: **make\_1d\_templates.sh** and **make\_2d\_templates.sh**. 
 
