@@ -9,6 +9,7 @@
 5. Simulate clusters with a wide range of angles for producing templates
    - We run the "Pixelav simulation for template production" part in  the `pixelav_simulation` module
    - Have to make sure the pixel2.init (e field) is the one we obtained for the desired model in the `tcad_file_processing` module
-6. Produce templates
+6. Produce templates using the `template_production` module
    - Copy the simulated clusters (from the `finished` directory) to your local machine and run `gunzip` on them
-   - Follow https://github.com/OzAmram/PixelTemplateProduction 
+   - Create `pix_2t.proc` file in local directory where the clusters are stored. Example of the file is stored in `template_production`
+   - From the same directory, run gen_xy_template followed by gen_zp_template (the compiled binaries should be in `template_production/bin`
