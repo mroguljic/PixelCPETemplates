@@ -38,3 +38,14 @@ The contents of `c_lorenzFit.txt` files should be copied to a file for plotting,
 *  `./test_q_dist_pt_bpix21_2t` also asks for input. We can do: `0. 4 0. 1109 1 2 0 0` for example
 * We look at the two pdfs and see if the agreement is acceptable. We proceed with simulating the clusters required for template production or work on tweaking the TCAD model
 
+## Testing the templates
+After creating a new set of templates, we have a folder such as `PixelCPETemplates/templates_32600`. Besides the templates, it should have clusters simulated at uniform spread of angles (instructions in "Pixelav simulation after template production" part of pixelav_simulation module).
+In `template_test_code.cxx`, edit the templates_dir variable to point to the folder with the templates and do:
+ ```
+./linkrootc++ template_test_code
+template_test_code #Input it 1, 1116 1, 0
+```
+In the output file, we look at residuals for temp (template) and cmssw (generic). The offsets in x for the two should be close. If it is not, we can tweak "generror_summary" file. "54.4700" and "27.230000" are the charge width and mean Lorentz drift correction (usually set to half the charge width, but does not necessarily need to be). We want to keep the charge width = 2*drift correction while tweaking
+
+
+
