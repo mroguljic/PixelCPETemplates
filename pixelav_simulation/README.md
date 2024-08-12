@@ -26,3 +26,5 @@ Here we simulate tracks at predefined angles (expressed as a grid of track sizes
 ## Pixelav simulation after template production
 Here we simulate tracks at uniform, randomly generated, set of angles. The procedure is the same as above except that we use `run.init` instead of `track_list.txt` and the Pixelav executable is adjusted. The corresponding submission file is `slurm_submit_rnd_trk.pbs`
 
+When the jobs finish, there should be six files. The first one should end in "...07.out.gz". Copy the files to local machine, unpack them and merge, keeping in mind that the first file contains the two header lines. It is recommended to merge them into "...06.out" file.
+
