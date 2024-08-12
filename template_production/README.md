@@ -14,7 +14,7 @@ The code shared with CMSSW uses the boost libraries. Change the include path in 
 
 ## Making Templates
 
-Create a `templates_XXXXXX` folder in the `PixelCPETemplates` folder and enter it. This folder should have all 205 `template_events_*out` files that have been simulated using the "Pixelav simulation for template production" part of the pixelav_simulation module. One also needs to manually create `pix_2t.proc` file. Then, from that folder, execute:
+Enter the `PixelCPETemplates/templates_XXXXX` folder. It should have been created when transferring the simulated clusters from remote to local machine ("Pixelav simulation for template production" of the pixelav_simulation module). This folder should have all 205 `template_events_*out` files. One also needs to manually create `pix_2t.proc` file. Then, from that folder, execute:
 ```
 ../template_production/bin/gen_xy_template
 ../template_production/bin/gen_zp_template
