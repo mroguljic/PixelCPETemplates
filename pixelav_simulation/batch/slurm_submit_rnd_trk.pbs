@@ -1,0 +1,25 @@
+#!/bin/bash -l
+#SBATCH --job-name=cluster-generation
+#SBATCH --time=24:00:00
+#SBATCH --array=1-6
+#SBATCH --nodes=1
+#SBATCH --ntasks-per-node=1 
+#SBATCH --partition=shared
+#SBATCH --mail-type=end
+#SBATCH --mail-user=mswartz1@jhu.edu
+#
+# cd /tmp
+cd /home/mswartz1/scrtmp
+mkdir "TEMPLATE_$SLURM_JOBID"
+cd "TEMPLATE_$SLURM_JOBID"
+cp /home/mswartz1/pixelav/SIRUTH.SPR .
+cp /home/mswartz1/templates_bpix/pixel2.init .
+cp /home/mswartz1/templates_bpix/wgt_pot.init .
+cp /home/mswartz1/templates_bpix/run.init .
+/home/mswartz1/pixelav/pixelav2_rndm_trk_n_2f $SLURM_ARRAY_TASK_ID
+gzip template_events_d*.out
+cp template_events_d*.out.gz /home/mswartz1/finished/
+cp seedfile* /home/mswartz1/finished/
+cd ..
+rm -r "TEMPLATE_$SLURM_JOBID"
+
