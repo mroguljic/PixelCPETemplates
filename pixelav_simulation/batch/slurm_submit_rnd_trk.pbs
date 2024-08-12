@@ -6,20 +6,20 @@
 #SBATCH --ntasks-per-node=1 
 #SBATCH --partition=shared
 #SBATCH --mail-type=end
-#SBATCH --mail-user=mswartz1@jhu.edu
+#SBATCH --mail-user=mrogulj1@jhu.edu
 #
 # cd /tmp
-cd /home/mswartz1/scrtmp
+cd /home/ext-mrogulj1/CPE_templates/pixelav_simulation/scrtmp
 mkdir "TEMPLATE_$SLURM_JOBID"
 cd "TEMPLATE_$SLURM_JOBID"
-cp /home/mswartz1/pixelav/SIRUTH.SPR .
-cp /home/mswartz1/templates_bpix/pixel2.init .
-cp /home/mswartz1/templates_bpix/wgt_pot.init .
-cp /home/mswartz1/templates_bpix/run.init .
-/home/mswartz1/pixelav/pixelav2_rndm_trk_n_2f $SLURM_ARRAY_TASK_ID
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/pixelav/SIRUTH.SPR .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/pixel2.init .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/wgt_pot.init .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/run.init .
+/home/ext-mrogulj1/CPE_templates/pixelav_simulation/pixelav/pixelav2_rndm_trk_n_2f $SLURM_ARRAY_TASK_ID
 gzip template_events_d*.out
-cp template_events_d*.out.gz /home/mswartz1/finished/
-cp seedfile* /home/mswartz1/finished/
+cp template_events_d*.out.gz /home/ext-mrogulj1/CPE_templates/pixelav_simulation/finished/
+cp seedfile* /home/ext-mrogulj1/CPE_templates/pixelav_simulation/finished/
 cd ..
 rm -r "TEMPLATE_$SLURM_JOBID"
 

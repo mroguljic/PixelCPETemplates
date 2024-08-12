@@ -9,16 +9,16 @@
 #SBATCH --mail-user=mrogulj1@jhu.edu
 #
 # cd /tmp
-cd /home/ext-mrogulj1/CPE_templates/scrtmp
+cd /home/ext-mrogulj1/CPE_templates/pixelav_simulation/scrtmp
 mkdir "TEMPLATE_$SLURM_JOBID"
 cd "TEMPLATE_$SLURM_JOBID"
-cp /home/ext-mrogulj1/CPE_templates/pixelav/SIRUTH.SPR .
-cp /home/ext-mrogulj1/CPE_templates/templates_bpix/pixel2.init .
-cp /home/ext-mrogulj1/CPE_templates/templates_bpix/wgt_pot.init .
-cp /home/ext-mrogulj1/CPE_templates/templates_bpix/runlist.init .
-/home/ext-mrogulj1/CPE_templates/pixelav/pixelav2_templates_xy_runlist_2f $SLURM_ARRAY_TASK_ID
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/pixelav/SIRUTH.SPR .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/pixel2.init .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/wgt_pot.init .
+cp /home/ext-mrogulj1/CPE_templates/pixelav_simulation/templates_bpix/runlist.init .
+/home/ext-mrogulj1/CPE_templates/pixelav_simulation/pixelav/pixelav2_templates_xy_runlist_2f $SLURM_ARRAY_TASK_ID
 gzip template_events_d*.out
-cp template_events_d*.out.gz /home/ext-mrogulj1/CPE_templates/finished/
-cp seedfile* /home/ext-mrogulj1/CPE_templates/finished/
+cp template_events_d*.out.gz /home/ext-mrogulj1/CPE_templates/pixelav_simulation/finished/
+cp seedfile* /home/ext-mrogulj1/CPE_templates/pixelav_simulation/finished/
 cd ..
 rm -r "TEMPLATE_$SLURM_JOBID"
