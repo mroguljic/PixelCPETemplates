@@ -40,7 +40,7 @@ The contents of `c_lorenzFit.txt` files should be copied to a file for plotting,
 
 ## Testing the templates
 After creating a new set of templates, we have a folder such as `PixelCPETemplates/templates_32600`. Besides the templates, it should have clusters simulated at uniform spread of angles (instructions in "Pixelav simulation after template production" part of pixelav_simulation module).
-In `template_test_code.cxx`, edit the templates_dir variable to point to the folder with the templates and do:
+In `template_test_code.cxx`, edit the templates_dir variable to point to the folder with the templates and insert a new line at the beginning of `q_dist_2t.txt`. Then do:
  ```
 ./linkrootc++ template_test_code
 template_test_code #Input it 1, 1116 1, 0
