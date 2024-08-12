@@ -15,4 +15,4 @@
    - From the same directory, run gen_xy_template followed by gen_zp_template (the compiled binaries should be in `template_production/bin`
 7. Test the new templates
    - Simulate tracks at uniform spread of angles (instructions in "Pixelav simulation after template production" part of `pixelav_simulation` module)
-   - Follow "Testing the templates in `LA_trees_procvessing` module
+   - Follow "Testing the templates in `LA_trees_processing` module
