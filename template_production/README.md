@@ -14,7 +14,13 @@ The code shared with CMSSW uses the boost libraries. Change the include path in 
 
 ## Making Templates
 
-**This needs to be updated following Morris' tutorial**
+Create a `templates_XXXXXX` folder in the `PixelCPETemplates` folder and enter it. This folder should have all 205 `template_events_*out` files that have been simulated using the "Pixelav simulation for template production" part of the pixelav_simulation module. One also needs to manually create `pix_2t.proc` file. Then, from that folder, execute:
+```
+../template_production/bin/gen_xy_template
+../template_production/bin/gen_zp_template
+```
+
+**Below might be outdated!**
 
 There are two simple bash scripts that run the necessary executables to make templates: **make\_1d\_templates.sh** and **make\_2d\_templates.sh**. 
 
