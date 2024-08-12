@@ -22,3 +22,7 @@ cat template_events_d285??.out > template_events_d28721.out
 
 ## Pixelav simulation for template production
 Here we simulate tracks at predefined angles (expressed as a grid of track sizes when projected to two local axes of the sensor). The procedure is the same as above except that we use `runlist.init` instead of `track_list.txt` and the Pixelav executable is adjusted. The corresponding submission file is `slurm_submit_for_templates.pbs`
+
+## Pixelav simulation after template production
+Here we simulate tracks at uniform, randomly generated, set of angles. The procedure is the same as above except that we use `run.init` instead of `track_list.txt` and the Pixelav executable is adjusted. The corresponding submission file is `slurm_submit_rnd_trk.pbs`
+
