@@ -37,5 +37,5 @@ Dot1_150x100_dj0305d@-475V,3.8T@90d,263K,rh=1.02/0.7,2.5/2.5,100Vdep
 ## Running TCAD
 * Start from one of the folders that were used in previous TCAD simulations
 * Simulation parameters are in files msh.grd, msh.dat and _des.cmd. _des.cmd is usually the one to modify, mostly the concentrations of two types of carrier traps.
-* Run `dessys test_diode_dj0305d` #`test_diode_dj0305d` is the name of the folder containing details about TCAD simulation and it needs to be run from that folder
+* Run `dessis test_diode_dj0305d` #`test_diode_dj0305d` is the name of the folder containing details about TCAD simulation and it needs to be run from that folder
 * Move the output folder to tcad_file_processing
