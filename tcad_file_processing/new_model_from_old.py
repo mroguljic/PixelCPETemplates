@@ -43,17 +43,24 @@ def prompt_new_voltages(last_voltage):
     return [float(v.strip()) for v in new_voltages.split(',')] if new_voltages else []
 
 def add_voltage_blocks(content, new_voltages, model_name):
+    # Remove the last '}' character to prevent out-of-scope errors
+    content = content.rstrip()  # Strip any trailing whitespace
+    if content.endswith('}'):
+        content = content[:-1]  # Remove the last character if it's a closing brace
+
     for voltage in new_voltages:
         voltage_int = int(abs(voltage))  # Create suffix based on integer part
         new_block = f"""
     Save (FilePrefix="test_diode_{model_name}_{voltage_int}")
     Quasistationary 
-    (Goal {{Name = "cathode" Voltage = {voltage} }} InitialStep = 1.0 ) {{
+    (Goal {{Name = "cathode" Voltage = {voltage}}} InitialStep = 1.0) {{
         Coupled (Iterations = 50 Digits = 5) {{Poisson electron hole}}
     }}
     Plot (FilePrefix="test_diode_{model_name}_{voltage_int}")
 """
         content += new_block
+
+    content += '}\n'  # Add the closing brace at the end
     return content
 
 def rename_and_copy_files(source_folder, target_folder, old_model_name, new_model_name):
