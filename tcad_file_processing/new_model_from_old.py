@@ -92,6 +92,10 @@ def rename_and_copy_files(source_folder, target_folder, old_model_name, new_mode
                 shutil.copy(source_path, target_path)
 
 def main():
+    #Example commands to run:
+    #python new_model_from_old.py test_diode_dj0305b dj0305b eoy24_l1a
+    #python new_model_from_old_dev.py dot1_150x100_prd2022lk3_dj0315e dj0315e eoy24_l1d
+    
     parser = argparse.ArgumentParser(description="Process TCAD model files.")
     parser.add_argument("source", help="Path to the source folder with template files.")
     parser.add_argument("old_model_name", help="Old model name to replace.")
