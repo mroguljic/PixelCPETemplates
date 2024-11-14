@@ -3,16 +3,19 @@ import re
 import shutil
 import argparse
 
+
 def clean_target_folder(target_folder):
     for filename in os.listdir(target_folder):
-        if filename.endswith('.sav') or filename.endswith('.des.dat') or filename.endswith('.des.log'):
+        if filename.endswith('.sav') or filename.endswith('des.dat') or filename.endswith('.des.log'):
             file_path = os.path.join(target_folder, filename)
             os.remove(file_path)
 
-def create_target_folder(source_folder, new_model_name):
-    target_folder = os.path.join(os.path.dirname(source_folder), f"test_diode_{new_model_name}")
+def create_target_folder(source_folder, old_model_name, new_model_name):
+    source_folder_name = os.path.basename(source_folder)
+    prefix = source_folder_name.split(old_model_name)[0]
+    target_folder = os.path.join(os.path.dirname(source_folder), f"{prefix}{new_model_name}")
     os.makedirs(target_folder, exist_ok=True)
-    return target_folder
+    return target_folder, prefix
 
 def get_concentration_values(content):
     acceptor_match = re.search(r"\bAcceptor.*?Conc=([\d.e+-]+)", content, re.S)
@@ -27,9 +30,7 @@ def prompt_new_concentrations(old_acceptor, old_donor):
     return new_acceptor or old_acceptor, new_donor or old_donor
 
 def replace_concentrations(content, old_acceptor, new_acceptor, old_donor, new_donor):
-    # Replace the acceptor concentration specifically
     content = re.sub(rf"(Acceptor.*?Conc=){old_acceptor}", rf"Acceptor\g<1>{new_acceptor}", content, flags=re.S)
-    # Replace the donor concentration specifically
     content = re.sub(rf"(Donor.*?Conc=){old_donor}", rf"Donor\g<1>{new_donor}", content, flags=re.S)
     return content
 
@@ -42,7 +43,7 @@ def prompt_new_voltages(last_voltage):
     new_voltages = input("Enter additional voltages separated by commas (or press Enter to skip): ")
     return [float(v.strip()) for v in new_voltages.split(',')] if new_voltages else []
 
-def add_voltage_blocks(content, new_voltages, model_name):
+def add_voltage_blocks(content, new_voltages, model_name,prefix):
     # Remove the last '}' character to prevent out-of-scope errors
     content = content.rstrip()  # Strip any trailing whitespace
     if content.endswith('}'):
@@ -51,26 +52,25 @@ def add_voltage_blocks(content, new_voltages, model_name):
     for voltage in new_voltages:
         voltage_int = int(abs(voltage))  # Create suffix based on integer part
         new_block = f"""
-    Save (FilePrefix="test_diode_{model_name}_{voltage_int}")
+    Save (FilePrefix="{prefix}{model_name}_{voltage_int}")
     Quasistationary 
     (Goal {{Name = "cathode" Voltage = {voltage}}} InitialStep = 1.0) {{
         Coupled (Iterations = 50 Digits = 5) {{Poisson electron hole}}
     }}
-    Plot (FilePrefix="test_diode_{model_name}_{voltage_int}")
+    Plot (FilePrefix="{prefix}{model_name}_{voltage_int}")
 """
         content += new_block
 
     content += '}\n'  # Add the closing brace at the end
     return content
 
-def rename_and_copy_files(source_folder, target_folder, old_model_name, new_model_name):
+def rename_and_copy_files(source_folder, target_folder, old_model_name, new_model_name,prefix):
     for filename in os.listdir(source_folder):
         if old_model_name in filename:
             new_filename = filename.replace(old_model_name, new_model_name)
             source_path = os.path.join(source_folder, filename)
             target_path = os.path.join(target_folder, new_filename)
-
-            if filename == f"test_diode_{old_model_name}_des.cmd":
+            if filename == f"{prefix}{old_model_name}_des.cmd":
                 with open(source_path, 'r') as file:
                     content = file.read()
                 
@@ -84,7 +84,7 @@ def rename_and_copy_files(source_folder, target_folder, old_model_name, new_mode
                 if last_voltage is not None:
                     new_voltages = prompt_new_voltages(last_voltage)
                     if new_voltages:
-                        content = add_voltage_blocks(content, new_voltages, new_model_name)
+                        content = add_voltage_blocks(content, new_voltages, new_model_name,prefix)
 
                 with open(target_path, 'w') as file:
                     file.write(content)
@@ -99,8 +99,8 @@ def main():
 
     args = parser.parse_args()
 
-    target_folder = create_target_folder(args.source, args.new_model_name)
-    rename_and_copy_files(args.source, target_folder, args.old_model_name, args.new_model_name)
+    target_folder, prefix = create_target_folder(args.source, args.old_model_name, args.new_model_name)
+    rename_and_copy_files(args.source, target_folder, args.old_model_name, args.new_model_name,prefix)
     clean_target_folder(target_folder)
     print(f"Files processed and saved to: {target_folder}")
 
