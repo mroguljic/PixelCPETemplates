@@ -36,7 +36,9 @@ The contents of `c_lorenzFit.txt` files should be copied to a file for plotting,
     *  ./linkrootc++ test_standard_pt_bpix21_2t
 *  `./test_standard_pt_bpix21_2t` asks for input. We can do: `0. 0. 0. 1109 1 2 0 0` for example
 *  `./test_q_dist_pt_bpix21_2t` also asks for input. We can do: `0. 4 0. 1109 1 2 0 0` for example
-* We look at the two pdfs and see if the agreement is acceptable. We proceed with simulating the clusters required for template production or work on tweaking the TCAD model
+* We look at the two pdfs and see if the agreement is acceptable. We proceed with simulating the clusters required for template production or work on tweaking the TCAD model. We focus on cluster sizes and charges.
+* The agreement can be improved by tuning the parameters in `q_dist_2t.txt` 
+
 
 ## Testing the templates
 After creating a new set of templates, we have a folder such as `PixelCPETemplates/templates_32600`. Besides the templates, it should have clusters simulated at uniform spread of angles (instructions in "Pixelav simulation after template production" part of pixelav_simulation module).
